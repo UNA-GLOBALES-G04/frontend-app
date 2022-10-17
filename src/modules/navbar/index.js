@@ -1,36 +1,34 @@
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   Button,
   Stack,
   Collapse,
-  Icon,
-  Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  Image
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
   CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
 } from '@chakra-ui/icons';
 
 import {
   DesktopNav,
-  DesktopSubNav,
   MobileNav,
-  MobileNavItem
 } from './components'
+
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const router = useRouter();
+
+  if(router.pathname === "/sign-up" || router.pathname === "/sign-in"){
+    return <></>;
+  }
+
 
   return (
     <Box>
@@ -43,7 +41,8 @@ export default function Navbar() {
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}>
+        align={'center'}
+        zIndex={3}>
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
@@ -58,14 +57,13 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text>
-
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+        <Image
+          objectFit='cover'
+          boxSize='40px'
+          src={'/Logo.png'}
+          alt='logo'/>
+          
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10} alignItems='center'>
             <DesktopNav />
           </Flex>
         </Flex>

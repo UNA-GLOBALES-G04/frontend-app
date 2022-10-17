@@ -6,11 +6,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <ChakraProvider>
+      <Box minH="100vh">
         <Navbar/>
-        <Box minH="82vh">          
           <Component {...pageProps} />
-        </Box>
         <Footer/>
+      </Box>
       </ChakraProvider>
     </RecoilRoot>
   );
