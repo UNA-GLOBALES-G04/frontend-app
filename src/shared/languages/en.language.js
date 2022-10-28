@@ -39,9 +39,17 @@ const EnglishDictionary = {
       notSpacesAndSpecialCharacters:
         "Not white spaces and special character supported",
     },
-    navBar: {
-      loginButton: "Login",
-    },
+  },
+  login: {
+    title: "Login",
+    email: "Email",
+    password: "Password",
+    submitButton: "Login",
+    forgotPassword: "Forgot your password?",
+    signUp: "Don't have an account? Sign up",
+  },
+  navBar: {
+    loginButton: "Login",
   },
 };
 
