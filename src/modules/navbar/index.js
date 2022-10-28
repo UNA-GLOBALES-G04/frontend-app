@@ -7,7 +7,8 @@ import {
   Collapse,
   useColorModeValue,
   useDisclosure,
-  Image
+  Image,
+  Select
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -21,9 +22,13 @@ import {
 
 import { useRouter } from "next/router";
 
+import {useTranslation} from '../../shared/hooks';
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const router = useRouter();
+
+  const { language, t, switchLanguage} = useTranslation();
 
   if(router.pathname === "/sign-up" || router.pathname === "/sign-in"){
     return <></>;
@@ -73,25 +78,26 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            Sign In
-          </Button>
+          <Select 
+            width={112}
+            onChange={(e) => switchLanguage(`${e.target.value}`, false)}
+            value={language}>
+            <option value="language" disabled>{t(`global.language.${language}`)}</option>
+            <option value="en">{t('global.language.en')}</option>
+            <option value="es">{t('global.language.es')}</option>
+          </Select>
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
             color={'white'}
-            bg={'pink.400'}
-            href={'#'}
+            bg={'#66a3f8'}
+            as={'a'}
+            href={'/sign-in'}
             _hover={{
-              bg: 'pink.300',
+              bg: '#326AB8',
             }}>
-            Sign Up
+            {t('navBar.loginButton')}
           </Button>
         </Stack>
       </Flex>

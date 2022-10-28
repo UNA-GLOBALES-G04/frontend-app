@@ -28,21 +28,19 @@ const InpustData = [
   {
     key: 'email',
     name: 'email',
-    label: 'Email',
     type: 'email',
     herlperText: 'esto es una ayudita',
   },
   {
     key: 'password',
     name: 'password',
-    label: 'Password',
     type: 'password',
     herlperText: 'esto es una ayudita',
   },
 ];
 
 const SignIn = () => {
-  const { language, t, switchLanguage } = useTranslation();
+  const { language, t } = useTranslation();
 
   const initialValues = {
     email: "",
@@ -50,8 +48,8 @@ const SignIn = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().required(),
+    email: Yup.string().email().required(t('global.error.required')),
+    password: Yup.string().required(t('global.error.required')),
   });
 
   const onSubmit = (event) => {
@@ -74,11 +72,7 @@ const SignIn = () => {
     errors,
     touched,
     handleChange,
-    setFieldValue,
-    setFieldTouched,
     handleBlur,
-    handleSubmit,
-    validateForm,
   } = formikProps;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -93,10 +87,7 @@ const SignIn = () => {
       <Waves/>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} zIndex={2}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
-          </Text>
+          <Heading fontSize={"4xl"}>{t('login.title')}</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -109,10 +100,9 @@ const SignIn = () => {
               <FormControl
                 key={`${input.key}-${index}`}
                 name={input.name}
-                label={input.label}
+                label={t(`login.${input.name}`)}
                 value={values?.[input.key]}
                 error={errors?.[input.key]}
-                herlperText={"esto es una ayudita"}
                 touched={touched?.[input.key]}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -121,12 +111,12 @@ const SignIn = () => {
             )}
             <Stack spacing={10}>
               <Stack
-                direction={{ base: "column", sm: "row" }}
+                direction={{ base: "column", sm: "column" }}
                 align={"start"}
                 justify={"space-between"}
               >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
+                
+                <Link color={"blue.400"}>{t('login.forgotPassword')}</Link>
               </Stack>
               <Button
                 bg={"blue.400"}
@@ -135,7 +125,7 @@ const SignIn = () => {
                   bg: "blue.500",
                 }}
               >
-                Sign in
+                {t('login.submitButton')}
               </Button>
             </Stack>
           </Stack>
