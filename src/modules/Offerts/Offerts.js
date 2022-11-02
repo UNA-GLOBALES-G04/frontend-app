@@ -32,29 +32,28 @@ const Offerts = () => {
   const { language, t, switchLanguage } = useTranslation();
 
   return (
-    <Center>
-      <HStack>
-        <MyServices />
-        <Box
-          maxW={"900px"}
-          w={"full"}
-          bg={useColorModeValue("white", "gray.800")}
-          boxShadow={"2xl"}
-          rounded={"md"}
-          overflow={"hidden"}
-        >
-          <Heading bg={useColorModeValue("tranparent", "tranparent")}>
-            Solicitudes
-          </Heading>
-          <br />
-          <Offert></Offert>
-          <br />
-          <Offert></Offert>
-          <br />
-          <Offert></Offert>
-        </Box>
-      </HStack>
-    </Center>
+    <Flex flexWrap="wrap">
+      <MyServices />
+      <Box
+        minW="600px"
+        maxW={"900px"}
+        w={"full"}
+        bg={useColorModeValue("white", "gray.800")}
+        boxShadow={"2xl"}
+        rounded={"md"}
+        overflow={"hidden"}
+      >
+        <Heading bg={useColorModeValue("tranparent", "tranparent")}>
+          Solicitudes
+        </Heading>
+        <br />
+        <Offert></Offert>
+        <br />
+        <Offert></Offert>
+        <br />
+        <Offert></Offert>
+      </Box>
+    </Flex>
   );
 };
 
