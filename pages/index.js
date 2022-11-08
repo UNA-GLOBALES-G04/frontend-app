@@ -1,15 +1,15 @@
-import {useTranslation} from '../src/shared/hooks';
-import { Footer } from '../src/modules';
+import { useTranslation } from "../src/shared/hooks";
+import { MainPage } from "../src/modules";
+import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
-
-  const { language, t, switchLanguage} = useTranslation();
+  const { language, t, switchLanguage } = useTranslation();
 
   return (
     <>
-    <div onClick={()=> {switchLanguage('en', false)}}>
-      {t('global.language.es')}
-    </div>
+      <Flex m="40px 32px" justifyContent={'center'}>
+        <MainPage />
+      </Flex>
     </>
-  )
+  );
 }
