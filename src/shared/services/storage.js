@@ -34,11 +34,31 @@ export const setLanguage = (newLanguage) => {
   catch(error){}
 }
 
+export const getUser = () => {
+  try {
+    const value = localStorage.getItem('userData');
+    if (!value) throw Error();
+
+    return value;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const setUser = (newUser) => {
+  try{
+    return localStorage.setItem('userData', newUser)
+  }
+  catch(error){}
+}
+
 const storageService = {
   getLanguage,
   setLanguage,
   getTheme,
-  setTheme
+  setTheme,
+  getUser,
+  setUser
 }
 
 export default storageService;

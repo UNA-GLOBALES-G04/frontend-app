@@ -5,6 +5,7 @@ import * as Yup from "yup";
 
 import { useTranslation } from "../../src/shared/hooks";
 import { FormControl } from "../../src/shared/components";
+import { withAuth } from "../../src/shared/components";
 
 const InpustData = [
   {
@@ -81,4 +82,4 @@ const Profile = () => {
   );
 }
 
-export default Profile;
+export default withAuth(Profile);
