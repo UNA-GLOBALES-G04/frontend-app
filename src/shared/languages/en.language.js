@@ -51,6 +51,14 @@ const EnglishDictionary = {
   navBar: {
     loginButton: "Login",
   },
+  profileSettings: {
+    title: "Profile Settings",
+    fullName: "Name",
+    email: "Email",
+    password: "Password",
+    legalDocumentId: "Legal Document",
+    updateButton: "Update",
+  },
 };
 
 export default EnglishDictionary;
