@@ -61,7 +61,7 @@ export default function Footer() {
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
-      position='absolute'
+      position='relative'
       w={'100%'}
       bottom={0}
       >

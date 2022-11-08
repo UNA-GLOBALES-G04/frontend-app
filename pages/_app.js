@@ -1,16 +1,20 @@
 import { RecoilRoot } from "recoil";
-import { ChakraProvider, Box } from '@chakra-ui/react';
-import { SidebarWithHeader, Footer, Navbar } from '../src/modules';
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { SidebarWithHeader, Footer, Navbar } from "../src/modules";
 
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <ChakraProvider>
-      <Box minH="100vh">
-        <Navbar/>
-          <Component {...pageProps} />
-        <Footer/>
-      </Box>
+      <Flex minH="100vh" direction={'column'} justifyContent={'space-between'}>
+        <div>
+
+        <Navbar />
+        <Component {...pageProps} />
+        </div>
+
+        <Footer />
+      </Flex>
       </ChakraProvider>
     </RecoilRoot>
   );
