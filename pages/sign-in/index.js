@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {useRouter} from 'next/router';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { FormControl } from "../../src/shared/components";
 import { Waves } from "../../src/shared/components/Backgrounds";
+import { signIn as signInApi } from "@src/shared/api/auth";
+import { useUpdateUser } from "@src/shared/hooks";
 
 import {
   Flex,
@@ -41,6 +44,10 @@ const InpustData = [
 
 const SignIn = () => {
   const { language, t } = useTranslation();
+  const [ isLoading, setIsLoading ] = useState(false);
+  const router = useRouter();
+
+  const { user, signIn } = useUpdateUser();
 
   const initialValues = {
     email: "",
@@ -52,13 +59,18 @@ const SignIn = () => {
     password: Yup.string().required(t('global.error.required')),
   });
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const onSubmit = async() => {
+    try{
+      setIsLoading(true);
+      const response = await signInApi(values);
+      await signIn(response.data);
+      console.log('response', response);
+    }
+    catch(error){
+      console.log('error', error);
+    }
+    setIsLoading(false);
+
   };
 
   const formikProps = useFormik({
@@ -73,6 +85,8 @@ const SignIn = () => {
     touched,
     handleChange,
     handleBlur,
+    setFieldTouched,
+    handleSubmit,
   } = formikProps;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -85,6 +99,7 @@ const SignIn = () => {
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Waves/>
+      
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} zIndex={2}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>{t('login.title')}</Heading>
@@ -124,6 +139,8 @@ const SignIn = () => {
                 _hover={{
                   bg: "blue.500",
                 }}
+                isLoading={isLoading}
+                onClick={handleSubmit}
               >
                 {t('login.submitButton')}
               </Button>

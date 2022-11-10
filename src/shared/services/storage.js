@@ -47,7 +47,7 @@ export const getUser = () => {
 
 export const setUser = (newUser) => {
   try{
-    return localStorage.setItem('userData', newUser)
+    return localStorage.setItem('userData', JSON.stringify(newUser))
   }
   catch(error){}
 }
