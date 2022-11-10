@@ -44,10 +44,13 @@ const InpustData = [
 
 const SignIn = () => {
   const { language, t } = useTranslation();
+<<<<<<< HEAD
   const [ isLoading, setIsLoading ] = useState(false);
   const router = useRouter();
 
   const { user, signIn } = useUpdateUser();
+=======
+>>>>>>> e398671a998182c5a8ca7b74fa6415f8d167c092
 
   const initialValues = {
     email: "",
@@ -85,8 +88,11 @@ const SignIn = () => {
     touched,
     handleChange,
     handleBlur,
+<<<<<<< HEAD
     setFieldTouched,
     handleSubmit,
+=======
+>>>>>>> e398671a998182c5a8ca7b74fa6415f8d167c092
   } = formikProps;
 
   const [showPassword, setShowPassword] = useState(false);

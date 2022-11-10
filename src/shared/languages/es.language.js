@@ -51,6 +51,14 @@ const SpanishDictionary = {
   navBar: {
     loginButton: "Iniciar sesión",
   },
+  profileSettings: {
+    title: "Configuración de perfil",
+    fullName: "Nombre",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    legalDocumentId: "Documento legal",
+    updateButton: "Actualizar",
+  },
 };
 
 export default SpanishDictionary;
