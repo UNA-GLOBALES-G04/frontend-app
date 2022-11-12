@@ -50,6 +50,7 @@ const EnglishDictionary = {
   },
   navBar: {
     loginButton: "Login",
+    logoutButton: "Logout",
   },
   profileSettings: {
     title: "Profile Settings",

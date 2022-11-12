@@ -50,6 +50,7 @@ const SpanishDictionary = {
   },
   navBar: {
     loginButton: "Iniciar sesión",
+    logoutButton: "Cerrar sesión",
   },
   profileSettings: {
     title: "Configuración de perfil",

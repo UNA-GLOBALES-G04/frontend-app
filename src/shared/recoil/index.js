@@ -7,7 +7,7 @@ export const languageState = atom({
 
 export const userState = atom({
   key: "userState",
-  default: {key: 'value'},
+  default: null,
 });
 
 export const recoilStateDictionary = {

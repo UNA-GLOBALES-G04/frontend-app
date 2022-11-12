@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { Flex } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Flex, Heading, Spinner, Image, Center } from "@chakra-ui/react";
 import { Card } from "./components";
 import { getAllServices } from "@src/shared/api/service";
+import Styles from "./styles.module.css";
+import { useQuery } from "@tanstack/react-query";
 
 const servicesList = [
   {
@@ -28,28 +30,46 @@ const servicesList = [
 ];
 
 const MainPage = () => {
-
   const [services, setServices] = useState([]);
+
+  const { data, isLoading, error } = useQuery(["services-list"], () =>
+    getServicesWithFilters({ name: searchTerm, tags: [] })
+  );
+
+
   useEffect(() => {
     const fetchServices = async () => {
       const response = await getAllServices();
       setServices(response.data);
     };
     fetchServices();
-  }, [])
-
-  useEffect(() => {
-    console.log('services', services);
-  }, [services])
-  
-  
+  }, []);
 
   return (
-    <Flex wrap={'wrap'} >
-      {servicesList.map((service , i) => (
-        <Card key={i} {...service} />
-      ))}
-    </Flex>
+    <>
+      <Flex className={`${Styles.bg}`} h="140px" flexDirection={'row'}>
+        <Image objectFit="cover" boxSize="80px" src={"/LogoWhite.png"} alt="logo" />
+        <Heading as="h1" size="xl" color={"white"}>
+          Conecta2
+        </Heading>
+      </Flex>
+      <Flex m="40px 32px" justifyContent={"center"}>
+      {isLoading ? (
+          <Center marginTop={'20px'}>
+            <Spinner thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'/>
+          </Center>
+        ) :
+        <Flex wrap={"wrap"}>
+          {data?.data?.map((service, i) => (
+            <Card key={i} {...service} />
+          ))}
+        </Flex>}
+      </Flex>
+    </>
   );
 };
 

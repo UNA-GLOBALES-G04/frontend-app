@@ -52,13 +52,21 @@ export const setUser = (newUser) => {
   catch(error){}
 }
 
+export const removeUser = () => {
+  try{
+    return localStorage.removeItem('userData')
+  }
+  catch(error){}
+}
+
 const storageService = {
   getLanguage,
   setLanguage,
   getTheme,
   setTheme,
   getUser,
-  setUser
+  setUser,
+  removeUser
 }
 
 export default storageService;

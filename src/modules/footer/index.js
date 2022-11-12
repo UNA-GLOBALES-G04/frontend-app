@@ -49,13 +49,7 @@ const SocialButton = ({
   );
 };
 
-export default function Footer() {
-
-  const router = useRouter();
-
-  if(router.pathname === "/sign-up" || router.pathname === "/sign-in"){
-    return <></>;
-  }
+function FooterComponent() {
 
   return (
     <Box
@@ -90,3 +84,17 @@ export default function Footer() {
     </Box>
   );
 }
+
+export default function Footer() {
+
+  const router = useRouter();
+
+  if(router.pathname === "/sign-up" || router.pathname === "/sign-in"){
+    return <></>;
+  }
+
+  return (
+    <FooterComponent />
+  );
+}
+

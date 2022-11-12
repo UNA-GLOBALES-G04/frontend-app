@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { useGlobalState } from "@src/shared/hooks";
+import { useGlobalState, useHasHydrated } from "@src/shared/hooks";
 import { StorageService } from "@src/shared/services";
 
 const withAuth = (Component) => {
@@ -16,10 +16,9 @@ const withAuth = (Component) => {
         let userData = user;
 
         if(!userData) {
-          userData = await StorageService.getUser();
+          userData = StorageService.getUser();
           setUser(userData);
         }
-        console.log('userData:: ', userData);
         if (!userData) {
           router.push("/sign-in");
         } else {
@@ -29,7 +28,7 @@ const withAuth = (Component) => {
       getUser();
     }, []);
 
-    return !!data ? <Component /> : null; // Render whatever you want while the authentication occurs
+    return  useHasHydrated() && !!data ? <Component /> : null; // Render whatever you want while the authentication occurs
   };
 
   return AuthenticatedComponent;

@@ -6,7 +6,8 @@ import * as Yup from "yup";
 import { FormControl } from "../../src/shared/components";
 import { Waves } from "../../src/shared/components/Backgrounds";
 import { signIn as signInApi } from "@src/shared/api/auth";
-import { useUpdateUser } from "@src/shared/hooks";
+import { useUpdateUser, useHasHydrated } from "@src/shared/hooks";
+import { withoutAuth } from '@src/shared/components';
 
 import {
   Flex,
@@ -100,7 +101,7 @@ const SignIn = () => {
     >
       <Waves/>
       
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} zIndex={2}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} zIndex={2} width='400px'>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>{t('login.title')}</Heading>
         </Stack>
@@ -152,4 +153,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default withoutAuth(SignIn);

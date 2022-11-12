@@ -12,17 +12,25 @@ const useUpdateUser = () => {
   const [user, setUser] = useGlobalState('userState');
   const router = useRouter();
 
-  const signIn = useCallback(async (userInfo) => {
+  const signIn = useCallback((userInfo) => {
     setUser(userInfo);
-    await StorageService.setUser(userInfo);
+    StorageService.setUser(userInfo);
     router.push('/');
   }, []);
 
   const signOut = useCallback(async () => {
     setUser(null);
-    await StorageService.setUser(null);
+    StorageService.removeUser();
+    router.reload();
   }, []);
 
+  useEffect(() => {
+    const setupUser = async () => {
+      setUser(StorageService.getUser());
+    }
+
+    setupUser();
+  }, [])
 
   return { user, signIn, signOut };
 }
