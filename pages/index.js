@@ -7,9 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <Flex m="40px 32px" justifyContent={'center'}>
-        <MainPage />
-      </Flex>
+      <MainPage />
     </>
   );
 }

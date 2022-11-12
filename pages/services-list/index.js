@@ -1,10 +1,11 @@
-import React, {useEffect, useState, useMemo} from 'react';
-import { Flex, Input } from "@chakra-ui/react";
-import debounce from 'lodash.debounce';
+import React, { useEffect, useState, useMemo } from "react";
+import { Flex, Input, Spinner, Center } from "@chakra-ui/react";
+import debounce from "lodash.debounce";
 
 import { Card } from "@src/modules/mainPage/components";
-import { getAllServices } from "@src/shared/api/service";
+import { getServicesWithFilters } from "@src/shared/api/service";
 import { useTranslation } from "@src/shared/hooks";
+import { useQuery } from "@tanstack/react-query";
 
 const servicesList = [
   {
@@ -32,12 +33,19 @@ const servicesList = [
 
 export default function ServicesList() {
   const { language, t, switchLanguage } = useTranslation();
-
   const [searchTerm, setSearchTerm] = useState("");
+  const { data, isLoading, error, refetch } = useQuery(["services-list"], () =>
+    getServicesWithFilters({ name: searchTerm, tags: [] })
+  );
 
   useEffect(() => {
-    console.log('searchTerm', searchTerm);
-  }, [searchTerm])
+    console.log("searchTerm", searchTerm);
+    refetch();
+  }, [searchTerm]);
+
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -55,13 +63,23 @@ export default function ServicesList() {
 
   return (
     <>
-      <Flex m="40px 32px" alignItems='center' flexDirection='column'>
-        <Input placeholder="Buscar" maxW='600px' onChange={debouncedResults} />
-        <Flex wrap={"wrap"}>
-          {servicesList.map((service, i) => (
-            <Card key={i} {...service} />
-          ))}
-        </Flex>
+      <Flex m="40px 32px" alignItems="center" flexDirection="column">
+        <Input placeholder="Buscar" maxW="600px" onChange={debouncedResults} />
+        {isLoading ? (
+          <Center marginTop={'20px'}>
+            <Spinner thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'/>
+          </Center>
+        ) : (
+          <Flex wrap={"wrap"}>
+            {data?.data?.map((service, i) => (
+              <Card key={i} {...service} />
+            ))}
+          </Flex>
+        )}
       </Flex>
     </>
   );

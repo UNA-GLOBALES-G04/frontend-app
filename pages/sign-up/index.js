@@ -19,6 +19,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { withoutAuth } from '@src/shared/components';
 
 import {useTranslation} from '../../src/shared/hooks'
 
@@ -144,4 +145,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default withoutAuth(SignUp);
