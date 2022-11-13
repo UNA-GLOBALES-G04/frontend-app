@@ -14,6 +14,7 @@ import {
   ListIcon,
   Center,
   useColorModeValue,
+  Flex,
 } from "@chakra-ui/react";
 
 import { Experience, PortfolioItem, Education, Schedule } from "./components";
@@ -31,10 +32,11 @@ const ServiceOfferedCopy = () => {
 
   return (
     <div>
-      <Center py={6}>
+      <Flex py={6} flexWrap='wrap' gap='8px' justifyContent='space-around'>
         <Box
+
           maxW={"900px"}
-          w={"full"}
+          w={["100%","100%","65%"]}
           bg={useColorModeValue("white", "gray.800")}
           boxShadow={"2xl"}
           rounded={"md"}
@@ -88,11 +90,15 @@ const ServiceOfferedCopy = () => {
             </Stack>
           </Stack>
           <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
-            <PortfolioItem />
+            <Flex overflowX='scroll'>
+              <PortfolioItem />
+            </Flex>
           </Box>
         </Box>
-        <Education />
-      </Center>
+        <Box   w={["100%","100%","30%"]}>
+          <Education />
+        </Box>
+      </Flex>
     </div>
   );
 };

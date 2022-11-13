@@ -75,6 +75,10 @@ const SpanishDictionary = {
     password: "Contraseña",
     updateButton: "Actualizar",
   },
+  languagesModal:{
+    title: "Selecciona un idioma",
+    close: "Cerrar",
+  }
 };
 
 export default SpanishDictionary;

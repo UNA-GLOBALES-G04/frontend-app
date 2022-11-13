@@ -75,6 +75,11 @@ const EnglishDictionary = {
     updateButton: "Update",
     
   },
+  languagesModal: {
+    title: "Select your language",
+    close: "Close",
+  },
+  
 };
 
 export default EnglishDictionary;

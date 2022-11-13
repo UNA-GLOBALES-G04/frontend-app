@@ -30,20 +30,11 @@ const servicesList = [
 ];
 
 const MainPage = () => {
-  const [services, setServices] = useState([]);
 
-  const { data, isLoading, error } = useQuery(["services-list"], () =>
-    getServicesWithFilters({ name: searchTerm, tags: [] })
+  const { data, isLoading, error } = useQuery(["services-list"], () =>(
+    getAllServices())
   );
 
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      const response = await getAllServices();
-      setServices(response.data);
-    };
-    fetchServices();
-  }, []);
 
   return (
     <>

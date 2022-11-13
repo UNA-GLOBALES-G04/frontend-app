@@ -11,6 +11,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { GrLanguage } from "react-icons/gr";
 
 import { DesktopNav, MobileNav } from "./components";
 
@@ -18,13 +19,16 @@ import { useRouter } from "next/router";
 
 import { useTranslation } from "../../shared/hooks";
 import { useUpdateUser } from "@src/shared/hooks";
+import LanguagesModal from "./components/LanguagesModal";
 
 function NavbarComponent() {
   const { isOpen, onToggle } = useDisclosure();
+  const { isOpen : isOpenModal, onOpen, onClose } = useDisclosure()
   const router = useRouter();
 
   const { language, t, switchLanguage } = useTranslation();
   const { user, signOut } = useUpdateUser();
+
 
   return (
     <Box>
@@ -81,6 +85,7 @@ function NavbarComponent() {
             width={112}
             onChange={(e) => switchLanguage(`${e.target.value}`, false)}
             value={language}
+            display={{ base: "none", md: "inline-flex" }}
           >
             <option value="language" disabled>
               {t(`global.language.${language}`)}
@@ -88,6 +93,14 @@ function NavbarComponent() {
             <option value="en">{t("global.language.en")}</option>
             <option value="es">{t("global.language.es")}</option>
           </Select>
+          <IconButton
+            display={{ base: "inline-flex", md: "none" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            onClick={onOpen}
+            icon={<GrLanguage />}
+          />
+          <LanguagesModal isOpen={isOpenModal} onClose={onClose} />
           {user ? (
             <Button
               display={{ base: "none", md: "inline-flex" }}
@@ -130,13 +143,10 @@ function NavbarComponent() {
 
 export default function Navbar() {
   const router = useRouter();
- 
+
   if (router.pathname === "/sign-up" || router.pathname === "/sign-in") {
     return <></>;
   }
 
-  return (
-    <NavbarComponent/>
-  )
-
+  return <NavbarComponent />;
 }
