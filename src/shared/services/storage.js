@@ -36,7 +36,7 @@ export const setLanguage = (newLanguage) => {
 
 export const getUser = () => {
   try {
-    const value = localStorage.getItem('userData');
+    const value = JSON.parse(localStorage.getItem('userData'));
     if (!value) throw Error();
 
     return value;

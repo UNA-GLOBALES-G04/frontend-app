@@ -48,6 +48,18 @@ const EnglishDictionary = {
     forgotPassword: "Forgot your password?",
     signUp: "Don't have an account? Sign up",
   },
+  signUp: {
+    title: "Sign up",
+    fullName: "Full name",
+    email: "Email",
+    password: "Password",
+    birthday: "Birthday",
+    legalDocumentId: "Legal document id",
+    address: "Address",
+    submitButton: "Sign up",
+    alreadyUser_1: "Already have an account?",
+    alreadyUser_2: "Login",
+  },
   navBar: {
     loginButton: "Login",
     logoutButton: "Logout",
@@ -55,10 +67,13 @@ const EnglishDictionary = {
   profileSettings: {
     title: "Profile Settings",
     fullName: "Name",
+    birthday: "Birthday",
+    address: "Address",
     email: "Email",
     password: "Password",
     legalDocumentId: "Legal Document",
     updateButton: "Update",
+    
   },
 };
 

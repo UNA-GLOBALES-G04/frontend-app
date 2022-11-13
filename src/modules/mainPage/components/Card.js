@@ -59,7 +59,7 @@ export default function Card({servicesName, description, tags = []}) {
             key={i}
             px={2}
             py={1}
-            bg={useColorModeValue('gray.50', 'gray.800')}
+            bg={'gray.50'}
             fontWeight={'400'}>
             {tag}
           </Badge>))}

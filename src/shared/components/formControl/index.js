@@ -6,13 +6,14 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 
-const FormControl = ({name, type, label, value, error, touched, herlperText, onChange, onBlur}) => {
+const FormControl = ({name, type, label, value, error, touched, herlperText, onChange, onBlur, isRequired}) => {
   
   return (
     <FormControlCK
       id={name}
       name={name}
       isInvalid={error && touched}
+      isRequired={isRequired}
     >
       <FormLabel>{label}</FormLabel>
       <Input
