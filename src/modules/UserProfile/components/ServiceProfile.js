@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "../../../shared/hooks";
@@ -18,27 +19,43 @@ import {
 } from "@chakra-ui/react";
 
 import { CheckIcon, CloseIcon, ViewIcon } from "@chakra-ui/icons";
-
 import { StarIcon } from "@chakra-ui/icons";
 
-const myLoader = ({ src, width, quality }) => {
-  return `https://cdn-icons-png.flaticon.com/${src}?s=${width}`;
-};
+import { getRatingByServiceId } from "@src/shared/api/service";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
-const ServiceProfile = () => {
+
+const ServiceProfile = ({Service}) => {
+
   const { language, t, switchLanguage } = useTranslation();
+  const { data, isLoading, error, refetch } = useQuery(["rating-service", Service.id], () =>(
+    getRatingByServiceId(Service.id))
+  );
+  const router = useRouter();
 
-  let Service = {
-    serviceName: "Contador",
-    ratingServices: "5",
-    description: "Contabilidad de personal y empresarial",
-  };
+  const [rating, setRating] = useState([]);
 
-  let rating = [true, true, true, false, false];
+  useEffect(() => {
+
+    if(data?.data?.rating){
+      console.log('data?.data?.rating', data?.data?.rating)
+      let rating = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < data?.data?.rating) {
+        rating.push(true);
+      }else{
+        rating.push(false);
+      }
+    }
+    console.log('rating', rating)
+    setRating(rating);
+  }
+    
+  }, [data]);
 
   return (
     <Box
-      maxW={"900px"}
       w={"full"}
       bg={useColorModeValue("white", "gray.800")}
       boxShadow={"2xl"}
@@ -46,26 +63,24 @@ const ServiceProfile = () => {
       overflow={"hidden"}
     >
       <Box bg={useColorModeValue("gray.50", "gray.900")} px={15} py={8}>
-        <HStack>
+        <HStack justifyContent='space-between'>
           <Stack>
             <Text fontSize={"2xl"} fontWeight={800}>
               {Service.serviceName}
             </Text>
             <Box>
               {rating.map((star, i) => {
-                let result = [];
                 if (star) {
-                  result.push(<StarIcon w={8} h={8} color="gold"></StarIcon>);
+                  return (<StarIcon w={8} h={8} color="gold" key={i}></StarIcon>);
                 } else {
-                  result.push(<StarIcon w={8} h={8} color="grey"></StarIcon>);
+                  return (<StarIcon w={8} h={8} color="grey" key={i}></StarIcon>);
                 }
-                return result;
               })}
             </Box>
             <Text>Descripcion: {Service.description}</Text>
           </Stack>
           <Stack align={"right"} justify={"right"}>
-            <Button leftIcon={<ViewIcon />} colorScheme="blue" variant="solid">
+            <Button leftIcon={<ViewIcon />} colorScheme="blue" variant="solid" onClick={()=>router.push(`/service/${Service.id}`)}>
               Ver servicio
             </Button>
           </Stack>

@@ -10,3 +10,9 @@ export const getAllServices = async () =>
 
 export const getServicesWithFilters = async (filters) =>
   api.post(`/Service/search`, filters);
+
+export const getServiceById = async (id) =>
+  api.get(`/Service/id/${id}`);
+
+export const getRatingByServiceId = async (id) =>
+  api.get(`/Service/id/${id}/rating`);

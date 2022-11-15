@@ -78,7 +78,16 @@ const SpanishDictionary = {
   languagesModal:{
     title: "Selecciona un idioma",
     close: "Cerrar",
+  },
+  orderModal:{
+    title: "Solicitar un servicio",
+    close: "Cerrar",
+    submitButton: "Realizar solicitar",
+    direction: "Dirección",
+    requiredDate: "Fecha y hora",
+    description: "Descripción",
   }
+
 };
 
 export default SpanishDictionary;

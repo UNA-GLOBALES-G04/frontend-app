@@ -79,6 +79,14 @@ const EnglishDictionary = {
     title: "Select your language",
     close: "Close",
   },
+  orderModal:{
+    title: "Make your order",
+    close: "Close",
+    submitButton: "Order",
+    direction: "Direction",
+    requiredDate: "Date and time",
+    description: "Description",
+  }
   
 };
 

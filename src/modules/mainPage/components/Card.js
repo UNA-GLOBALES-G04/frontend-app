@@ -11,7 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-export default function Card({servicesName, description, tags = []}) {
+export default function Card({serviceName, description, tags = []}) {
   return (
     <Center py={6} px={4}>
       <Box
@@ -43,7 +43,7 @@ export default function Card({servicesName, description, tags = []}) {
           }}
         /> */}
         <Heading fontSize={'2xl'} fontFamily={'body'}>
-          {servicesName}
+          {serviceName}
         </Heading>
 
         <Text
@@ -54,7 +54,7 @@ export default function Card({servicesName, description, tags = []}) {
           {description}
         </Text>
 
-        <Stack align={'center'} justify={'center'} direction={'row'} mt={4}>
+        <Stack align={'center'} justify={'center'} direction={'row'} mt={4} flexWrap='wrap'>
           {tags.map((tag, i)=>(<Badge
             key={i}
             px={2}

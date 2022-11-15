@@ -22,7 +22,7 @@ const myLoader = ({ src, width, quality }) => {
   return `https://cdn-icons-png.flaticon.com/${src}?s=${width}`;
 };
 
-const CoverPage = () => {
+const CoverPage = ({name}) => {
   const { language, t, switchLanguage } = useTranslation();
 
   let Profile = {
@@ -32,7 +32,6 @@ const CoverPage = () => {
 
   return (
     <Box
-      maxW={"900px"}
       w={"full"}
       bg={useColorModeValue("white", "gray.800")}
       boxShadow={"2xl"}
@@ -51,9 +50,8 @@ const CoverPage = () => {
           </Stack>
           <Stack>
             <Text fontSize={"2xl"} fontWeight={800}>
-              {Profile.UserName}
+              {name}
             </Text>
-            <Text>{Profile.ProfecionalDescription}</Text>
           </Stack>
         </HStack>
       </Box>
