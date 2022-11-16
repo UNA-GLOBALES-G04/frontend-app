@@ -34,8 +34,8 @@ const servicesList = [
 export default function ServicesList() {
   const { language, t, switchLanguage } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading, error, refetch } = useQuery(["services-list"], () =>
-    getServicesWithFilters({ name: searchTerm, tags: [] })
+  const { data, isLoading, error, refetch } = useQuery(["services-list"], () =>(
+    getServicesWithFilters({ name: searchTerm, tags: [] }))
   );
 
   useEffect(() => {

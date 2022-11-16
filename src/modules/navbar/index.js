@@ -11,6 +11,10 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+<<<<<<< HEAD
+=======
+import { GrLanguage } from "react-icons/gr";
+>>>>>>> create-service
 
 import { DesktopNav, MobileNav } from "./components";
 
@@ -18,13 +22,22 @@ import { useRouter } from "next/router";
 
 import { useTranslation } from "../../shared/hooks";
 import { useUpdateUser } from "@src/shared/hooks";
+<<<<<<< HEAD
+=======
+import LanguagesModal from "./components/LanguagesModal";
+>>>>>>> create-service
 
 function NavbarComponent() {
   const { isOpen, onToggle } = useDisclosure();
+  const { isOpen : isOpenModal, onOpen, onClose } = useDisclosure()
   const router = useRouter();
 
   const { language, t, switchLanguage } = useTranslation();
   const { user, signOut } = useUpdateUser();
+<<<<<<< HEAD
+=======
+
+>>>>>>> create-service
 
   return (
     <Box>
@@ -81,6 +94,10 @@ function NavbarComponent() {
             width={112}
             onChange={(e) => switchLanguage(`${e.target.value}`, false)}
             value={language}
+<<<<<<< HEAD
+=======
+            display={{ base: "none", md: "inline-flex" }}
+>>>>>>> create-service
           >
             <option value="language" disabled>
               {t(`global.language.${language}`)}
@@ -88,6 +105,17 @@ function NavbarComponent() {
             <option value="en">{t("global.language.en")}</option>
             <option value="es">{t("global.language.es")}</option>
           </Select>
+<<<<<<< HEAD
+=======
+          <IconButton
+            display={{ base: "inline-flex", md: "none" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            onClick={onOpen}
+            icon={<GrLanguage />}
+          />
+          <LanguagesModal isOpen={isOpenModal} onClose={onClose} />
+>>>>>>> create-service
           {user ? (
             <Button
               display={{ base: "none", md: "inline-flex" }}
@@ -130,13 +158,21 @@ function NavbarComponent() {
 
 export default function Navbar() {
   const router = useRouter();
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> create-service
   if (router.pathname === "/sign-up" || router.pathname === "/sign-in") {
     return <></>;
   }
 
+<<<<<<< HEAD
   return (
     <NavbarComponent/>
   )
 
+=======
+  return <NavbarComponent />;
+>>>>>>> create-service
 }

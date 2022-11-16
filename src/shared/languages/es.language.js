@@ -39,6 +39,7 @@ const SpanishDictionary = {
       notSpacesAndSpecialCharacters:
         "No se permite espacios ni caracteres especiales",
     },
+<<<<<<< HEAD
   },
   login: {
     title: "Iniciar sesión",
@@ -59,7 +60,71 @@ const SpanishDictionary = {
     password: "Contraseña",
     legalDocumentId: "Documento legal",
     updateButton: "Actualizar",
+=======
+>>>>>>> create-service
   },
+  login: {
+    title: "Iniciar sesión",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    submitButton: "Iniciar sesión",
+    forgotPassword: "¿Olvidaste tu contraseña?",
+    signUp: "¿No tienes una cuenta? Regístrate",
+  },
+  signUp: {
+    title: "Regístrate",
+    fullName: "Nombre completo",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    birthday: "Fecha de nacimiento",
+    legalDocumentId: "Documento de identidad",
+    address: "Dirección",
+    submitButton: "Regístrate",
+    alreadyUser_1: "¿Ya tienes una cuenta?",
+    alreadyUser_2: "Iniciar sesión",
+  },
+  navBar: {
+    loginButton: "Iniciar sesión",
+    logoutButton: "Cerrar sesión",
+  },
+  profileSettings: {
+    title: "Configuración de perfil",
+    fullName: "Nombre completo",
+    password: "Contraseña",
+    birthday: "Fecha de nacimiento",
+    legalDocumentId: "Documento de identidad",
+    address: "Dirección",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    updateButton: "Actualizar",
+  },
+  languagesModal:{
+    title: "Selecciona un idioma",
+    close: "Cerrar",
+  },
+  orderModal:{
+    title: "Solicitar un servicio",
+    close: "Cerrar",
+    submitButton: "Realizar solicitar",
+    direction: "Dirección",
+    requiredDate: "Fecha y hora",
+    description: "Descripción",
+  },
+  orderToast:{
+    title: "Solicitud de servicio",
+    description: "Se ha realizado la solicitud de servicio",
+  },
+  createService: {
+    title: "Crear un servicio",
+    serviceName: "Nombre del servicio",
+    description: "Descripción",
+    email: "Correo electrónico",
+    phoneNumber: "Número de teléfono",
+    tags: "Etiquetas",
+    submitButton: "Crear servicio",
+  },
+
+
 };
 
 export default SpanishDictionary;

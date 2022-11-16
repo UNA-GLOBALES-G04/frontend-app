@@ -35,7 +35,6 @@ const Education = () => {
     <div>
       <Center py={6}>
         <Box
-          maxW={"330px"}
           w={"full"}
           bg={useColorModeValue("white", "gray.800")}
           boxShadow={"2xl"}

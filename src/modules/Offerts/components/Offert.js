@@ -16,24 +16,26 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-
+import { getUser } from "@src/shared/api/user";
+import { useQuery } from "@tanstack/react-query";
 import { CheckIcon, CloseIcon, ViewIcon } from "@chakra-ui/icons";
+import { useEffect } from "react";
+import { acceptOrder } from "@src/shared/api/order";
 
-const myLoader = ({ src, width, quality }) => {
-  return `https://cdn-icons-png.flaticon.com/${src}?s=${width}`;
-};
-
-const Offert = () => {
+const Offert = ({offert, refetch, user}) => {
   const { language, t, switchLanguage } = useTranslation();
 
-  let Offert = {
-    userName: "Jose Montero Molina",
-    profesion: "Se busca arquitecto",
-    date: "28/10/2022",
-    time: "8:00 PM",
-    details:
-      "Se requiere un plano para una segunda planta a una casa con el fin de colocra dos curatos, sala star y un bano compelto, con un presupuesto de 20 millones",
-  };
+  const { data, isLoading, error } = useQuery(["user"], () =>
+    getUser(offert.userProfileId)
+  );
+
+
+  const acceptOrdeOnclick = async () => {
+    const response = await acceptOrder({serviceId: offert.serviceId, orderId: offert.id}, user.token);
+    refetch();
+    console.log(response);
+  }
+
 
   return (
     <div>
@@ -46,29 +48,24 @@ const Offert = () => {
         overflow={"hidden"}
       >
         <Box bg={useColorModeValue("gray.50", "gray.900")} px={15} py={8}>
-          <HStack>
+          <HStack justifyContent='space-between'>
             <Stack>
               <Text fontSize={"2xl"} fontWeight={800}>
-                {Offert.userName}
+                {data?.data?.vendorName}
               </Text>
-              <Text>{Offert.profesion}</Text>
               <Text>
-                Fecha: {Offert.date} Hora: {Offert.time}
+                Fecha y hora: {offert.requiredDate}
               </Text>
-              <Text>Detalle: {Offert.details}</Text>
+              <Text>Detalle: {offert.description}</Text>
+              <Text>Dirección: {offert.direction}</Text>
             </Stack>
             <Stack align={"right"} justify={"right"}>
-              <Button
-                leftIcon={<ViewIcon />}
-                colorScheme="blue"
-                variant="solid"
-              >
-                Ver oferta
-              </Button>
+
               <Button
                 leftIcon={<CheckIcon />}
                 colorScheme="green"
                 variant="solid"
+                onClick={acceptOrdeOnclick}
               >
                 Aceptar
               </Button>

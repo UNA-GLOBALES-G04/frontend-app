@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -20,36 +20,24 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { withoutAuth } from '@src/shared/components';
-<<<<<<< HEAD
-=======
 import { useRouter } from 'next/router';
 import { FormControl } from "@src/shared/components";
 import {useTranslation} from '../../src/shared/hooks';
-import { signUp as signUpApi } from "@src/shared/api/user";
+import { createService } from "@src/shared/api/service";
+import { useUpdateUser } from "@src/shared/hooks";
+
 
 
 const InpustData = [
   {
-    key: 'fullName',
-    name: 'fullName',
+    key: 'serviceName',
+    name: 'serviceName',
     type: 'text',
     isRequired: true,
   },
   {
-    key: 'legalDocumentId',
-    name: 'legalDocumentId',
-    type: 'text',
-    isRequired: true,
-  },
-  {
-    key: 'birthday',
-    name: 'birthday',
-    type: 'date',
-    isRequired: true,
-  },
-  {
-    key: 'address',
-    name: 'address',
+    key: 'description',
+    name: 'description',
     type: 'text',
     isRequired: true,
   },
@@ -58,47 +46,54 @@ const InpustData = [
     name: 'email',
     type: 'email',
     isRequired: true,
-  },{
-    key: 'password',
-    name: 'password',
-    type: 'password',
+  },
+  {
+    key: 'phoneNumber',
+    name: 'phoneNumber',
+    type: 'text',
     isRequired: true,
   },
+  {
+    key: 'tags',
+    name: 'tags',
+    type: 'tags',
+    isRequired: true,
+  }
 
 ];
->>>>>>> create-service
 
 
-const SignUp = () => {
+const CreateService = () => {
 
   const { language, t, switchLanguage} = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
+  const { user, signIn } = useUpdateUser();
+
 
   const initialValues = {
-    fullName: '',
-    legalDocumentId: '',
-    birthday: '',
+    serviceName: '',
+    description: '',
     email: '',
-    password: '',
-    address: '',
+    phoneNumber: '',
+    tags: '',
+    multimedia: []
   }
-  const router = useRouter();
-  const goToLogin = () => { router.push('/sign-in') }
 
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().required(),
+    
   })
 
-  const onSubmit = async (event) => {
-    
-    const { fullName, legalDocumentId, birthday, email, password, address } = values;
+  const onSubmit = async () => {
+    console.log(values)
+    const { tags } = values;
+
+    const tagsArray = tags.split(',');
+
     setIsLoading(true);
     try{
-      await signUpApi({userInfo: { fullName, legalDocumentId, birthDate: `${birthday}T00:00:00Z`, email, address, profilePictureID: '' }, authInfo: {email, password}});
+      await createService({...values, tags: tagsArray}, user.token);
       setIsLoading(false);
-      goToLogin();
     }
     catch(error){
       console.log(error);
@@ -106,6 +101,8 @@ const SignUp = () => {
     setIsLoading(false);
 
   };
+
+  
   
   const formikProps = useFormik({
     onSubmit,
@@ -124,10 +121,12 @@ const SignUp = () => {
     handleSubmit,
     validateForm,
   } = formikProps;
-  
-  
-  const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    console.log('values', values);
+  }, [values]);
+  
+  
   return (
     <Flex
       minH={'100vh'}
@@ -137,7 +136,7 @@ const SignUp = () => {
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textAlign={'center'}>
-            {t('signUp.title')}
+            {t('createService.title')}
           </Heading>
 
         </Stack>
@@ -152,7 +151,7 @@ const SignUp = () => {
               <FormControl
                 key={`${input.key}-${index}`}
                 name={input.name}
-                label={t(`signUp.${input.name}`)}
+                label={t(`createService.${input.name}`)}
                 value={values?.[input.key]}
                 error={errors?.[input.key]}
                 touched={touched?.[input.key]}
@@ -173,13 +172,8 @@ const SignUp = () => {
                 }}
                 onClick={handleSubmit}
                 isLoading={isLoading} >
-                {t(`signUp.submitButton`)}
+                {t(`createService.submitButton`)}
               </Button>
-            </Stack>
-            <Stack pt={6}>
-              <Text align={'center'} onClick={goToLogin} >
-                {t(`signUp.alreadyUser_1`)} <Link color={'blue.400'}>{t(`signUp.alreadyUser_2`)}</Link>
-              </Text>
             </Stack>
           </Stack>
         </Box>
@@ -188,4 +182,4 @@ const SignUp = () => {
   )
 }
 
-export default withoutAuth(SignUp);
+export default (CreateService);

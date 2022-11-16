@@ -1,4 +1,4 @@
-import Offerts from "../src/modules/Offerts/Offerts";
+import Offerts from "@src/modules/Offerts/Offerts";
 
 const OffertsTest = () => {
   return <Offerts />;

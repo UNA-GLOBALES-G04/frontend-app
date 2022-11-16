@@ -39,6 +39,7 @@ const EnglishDictionary = {
       notSpacesAndSpecialCharacters:
         "Not white spaces and special character supported",
     },
+<<<<<<< HEAD
   },
   login: {
     title: "Login",
@@ -59,7 +60,70 @@ const EnglishDictionary = {
     password: "Password",
     legalDocumentId: "Legal Document",
     updateButton: "Update",
+=======
+>>>>>>> create-service
   },
+  login: {
+    title: "Login",
+    email: "Email",
+    password: "Password",
+    submitButton: "Login",
+    forgotPassword: "Forgot your password?",
+    signUp: "Don't have an account? Sign up",
+  },
+  signUp: {
+    title: "Sign up",
+    fullName: "Full name",
+    email: "Email",
+    password: "Password",
+    birthday: "Birthday",
+    legalDocumentId: "Legal document id",
+    address: "Address",
+    submitButton: "Sign up",
+    alreadyUser_1: "Already have an account?",
+    alreadyUser_2: "Login",
+  },
+  navBar: {
+    loginButton: "Login",
+    logoutButton: "Logout",
+  },
+  profileSettings: {
+    title: "Profile Settings",
+    fullName: "Name",
+    birthday: "Birthday",
+    address: "Address",
+    email: "Email",
+    password: "Password",
+    legalDocumentId: "Legal Document",
+    updateButton: "Update",
+    
+  },
+  languagesModal: {
+    title: "Select your language",
+    close: "Close",
+  },
+  orderModal:{
+    title: "Make your order",
+    close: "Close",
+    submitButton: "Order",
+    direction: "Direction",
+    requiredDate: "Date and time",
+    description: "Description",
+  },
+  orderToast:{
+    title: "Order",
+    message: "Your order has been made",
+  },
+  createService:{
+    title: "Create Service",
+    serviceName: "Service Name",
+    description: "Description",
+    email: "Email",
+    phoneNumber: "Phone Number",
+    tags: "Tags",
+    submitButton: "Create",
+  }
+  
 };
 
 export default EnglishDictionary;

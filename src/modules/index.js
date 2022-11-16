@@ -1,10 +1,12 @@
+<<<<<<< HEAD
 import SidebarWithHeader from './sidebar';
+=======
+>>>>>>> create-service
 import Footer from './footer';
 import Navbar from './navbar';
 import MainPage from './mainPage'
 
 export {
-  SidebarWithHeader,
   Footer,
   Navbar,
   MainPage

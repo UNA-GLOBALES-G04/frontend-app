@@ -30,6 +30,7 @@ const servicesList = [
 ];
 
 const MainPage = () => {
+<<<<<<< HEAD
   const [services, setServices] = useState([]);
 
   const { data, isLoading, error } = useQuery(["services-list"], () =>
@@ -45,6 +46,14 @@ const MainPage = () => {
     fetchServices();
   }, []);
 
+=======
+
+  const { data, isLoading, error } = useQuery(["services-list"], () =>(
+    getAllServices())
+  );
+
+
+>>>>>>> create-service
   return (
     <>
       <Flex className={`${Styles.bg}`} h="140px" flexDirection={'row'}>

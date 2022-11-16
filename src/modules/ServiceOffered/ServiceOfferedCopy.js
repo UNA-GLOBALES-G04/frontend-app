@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "../../shared/hooks";
+import React, { useState, useEffect } from "react";
 
 import {
   Heading,
@@ -11,30 +12,59 @@ import {
   ListItem,
   Box,
   Stack,
+  HStack,
   ListIcon,
   Center,
   useColorModeValue,
+  Flex,
 } from "@chakra-ui/react";
 
 import { Experience, PortfolioItem, Education, Schedule } from "./components";
 
-const myLoader = ({ src, width, quality }) => {
-  return `https://cdn-icons-png.flaticon.com/${src}?s=${width}`;
-};
+import { getRatingByServiceId, getServiceById } from "@src/shared/api/service";
+import { useQuery } from "@tanstack/react-query";
 
 import { PhoneIcon, AddIcon, StarIcon } from "@chakra-ui/icons";
+import ServicesRequest from "@src/modules/ServiceRequest/ServicesRequest";
 
-let rating = [true, true, false, false, false];
-
-const ServiceOfferedCopy = () => {
+const ServiceOfferedCopy = ({ serviceId }) => {
   const { language, t, switchLanguage } = useTranslation();
+
+  const {
+    data: dataRating,
+    isLoadingRating,
+    errorRating,
+  } = useQuery(["rating-service", serviceId], () =>
+    getRatingByServiceId(serviceId)
+  );
+
+  const { data, isLoading, error } = useQuery(["service", serviceId], () =>
+    getServiceById(serviceId)
+  );
+
+  const [rating, setRating] = useState([]);
+
+  useEffect(() => {
+    if (dataRating?.data?.rating) {
+      let rating = [];
+      for (let i = 0; i < 5; i++) {
+        if (i < dataRating?.data?.rating) {
+          rating.push(true);
+        } else {
+          rating.push(false);
+        }
+      }
+      console.log("rating", rating);
+      setRating(rating);
+    }
+  }, [dataRating]);
 
   return (
     <div>
-      <Center py={6}>
+      <Flex py={6} flexWrap="wrap" gap="8px" justifyContent="space-around">
         <Box
           maxW={"900px"}
-          w={"full"}
+          w={["100%", "100%", "65%"]}
           bg={useColorModeValue("white", "gray.800")}
           boxShadow={"2xl"}
           rounded={"md"}
@@ -42,7 +72,7 @@ const ServiceOfferedCopy = () => {
         >
           <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
             <Text fontSize={"2xl"} fontWeight={800}>
-              Barbero profesional
+              {data?.data?.serviceName}
             </Text>
             {rating.map((star, i) => {
               let result = [];
@@ -55,23 +85,35 @@ const ServiceOfferedCopy = () => {
             })}
             <br />
             <br />
-            <Text>Cortes de cabello para adulto o niño</Text>
+            <Text>{data?.data?.description}</Text>
           </Box>
 
-          <Stack
+          <HStack
             textAlign={"left"}
             p={6}
             color={useColorModeValue("gray.800", "white")}
             align={"left"}
             bg={useColorModeValue("gray.50", "gray.900")}
+            spacing='20px'
           >
-            <Stack direction={"row"} align={"left"} justify={"left"}>
+            <Stack direction={"column"} align={"left"} justify={"left"} >
               <Text fontSize={"2xl"} fontWeight={800}>
-                Experiencia
+                Informacion de contacto
               </Text>
+              <Stack direction={"row"} align={"left"} justify={"left"}>
+                <Text fontWeight={600} >Email: </Text>
+                <Text>{data?.data?.email}</Text>
+              </Stack>
+              <Stack direction={"row"} align={"left"} justify={"left"}>
+                <Text fontWeight={600} >Phone number: </Text>
+                <Text>{data?.data?.phoneNumber}</Text>
+              </Stack>
             </Stack>
-          </Stack>
-          <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
+            <Center>
+              <ServicesRequest serviceId={serviceId}/>
+            </Center>
+          </HStack>
+          {/* <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
             <Experience />
           </Box>
           <Stack
@@ -86,13 +128,18 @@ const ServiceOfferedCopy = () => {
                 Algunos de mis proyectos
               </Text>
             </Stack>
-          </Stack>
+          </Stack> 
           <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
-            <PortfolioItem />
-          </Box>
+            <Flex overflowX='scroll'>
+              <PortfolioItem />
+            </Flex>
+          </Box>*/}
         </Box>
-        <Education />
-      </Center>
+        {/*<Box   w={["100%","100%","30%"]}>
+          <Education />
+        </Box>
+        */}
+      </Flex>
     </div>
   );
 };
