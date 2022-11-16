@@ -94,8 +94,9 @@ const ServiceOfferedCopy = ({ serviceId }) => {
             color={useColorModeValue("gray.800", "white")}
             align={"left"}
             bg={useColorModeValue("gray.50", "gray.900")}
+            spacing='20px'
           >
-            <Stack direction={"column"} align={"left"} justify={"left"}>
+            <Stack direction={"column"} align={"left"} justify={"left"} >
               <Text fontSize={"2xl"} fontWeight={800}>
                 Informacion de contacto
               </Text>
@@ -108,7 +109,9 @@ const ServiceOfferedCopy = ({ serviceId }) => {
                 <Text>{data?.data?.phoneNumber}</Text>
               </Stack>
             </Stack>
-            <ServicesRequest serviceId={serviceId}/>
+            <Center>
+              <ServicesRequest serviceId={serviceId}/>
+            </Center>
           </HStack>
           {/* <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
             <Experience />

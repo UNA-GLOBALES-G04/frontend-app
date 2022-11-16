@@ -26,6 +26,7 @@ import {
   InputGroup,
   Flex,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 
 import { useUpdateUser } from "@src/shared/hooks";
@@ -67,6 +68,7 @@ const ServicesRequest = ({ serviceId }) => {
 
   const { language, t, switchLanguage } = useTranslation();
   const { user } = useUpdateUser();
+  const toast = useToast();
 
   const initialValues = {
     direction: "",
@@ -81,10 +83,23 @@ const ServicesRequest = ({ serviceId }) => {
     const { requiredDate, direction, description } = values;
     try {
       await createOrder(
-        {serviceId, requiredDate: `${requiredDate}:00Z`, direction, description},
+        {
+          serviceId,
+          requiredDate: `${requiredDate}:00Z`,
+          direction,
+          description,
+        },
         user.token
       );
+      onClose();
       setIsLoading(false);
+      toast({
+        title: t("orderToast.title"),
+        description: t("orderToast.message"),
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -103,6 +118,20 @@ const ServicesRequest = ({ serviceId }) => {
   return (
     <Flex>
       <Button
+        flex={1}
+        fontSize={"sm"}
+        rounded={"full"}
+        bg={"blue.400"}
+        color={"white"}
+        boxShadow={
+          "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+        }
+        _hover={{
+          bg: "blue.500",
+        }}
+        _focus={{
+          bg: "blue.500",
+        }}
         onClick={() => {
           setOverlay(<OverlayOne />);
           onOpen();
@@ -135,10 +164,13 @@ const ServicesRequest = ({ serviceId }) => {
           <ModalFooter>
             <HStack>
               <Box>
-                <Button onClick={handleSubmit}> {t("orderModal.submitButton")}</Button>
+                <Button onClick={onClose}> {t("orderModal.close")}</Button>
               </Box>
               <Box>
-                <Button onClick={onClose}> {t("orderModal.close")}</Button>
+                <Button onClick={handleSubmit} isLoading={isLoading}>
+                  {" "}
+                  {t("orderModal.submitButton")}
+                </Button>
               </Box>
             </HStack>
           </ModalFooter>

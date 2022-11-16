@@ -1,5 +1,5 @@
-import EditService from "../src/modules/EditService/EditService";
-import { MyServices } from "../src/modules/Offerts/components";
+import EditService from "@src/modules/EditService/EditService";
+import { MyServices } from "@src/modules/Offerts/components";
 
 import {
   Heading,

@@ -86,7 +86,21 @@ const SpanishDictionary = {
     direction: "Dirección",
     requiredDate: "Fecha y hora",
     description: "Descripción",
-  }
+  },
+  orderToast:{
+    title: "Solicitud de servicio",
+    description: "Se ha realizado la solicitud de servicio",
+  },
+  createService: {
+    title: "Crear un servicio",
+    serviceName: "Nombre del servicio",
+    description: "Descripción",
+    email: "Correo electrónico",
+    phoneNumber: "Número de teléfono",
+    tags: "Etiquetas",
+    submitButton: "Crear servicio",
+  },
+
 
 };
 

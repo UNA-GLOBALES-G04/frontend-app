@@ -86,6 +86,19 @@ const EnglishDictionary = {
     direction: "Direction",
     requiredDate: "Date and time",
     description: "Description",
+  },
+  orderToast:{
+    title: "Order",
+    message: "Your order has been made",
+  },
+  createService:{
+    title: "Create Service",
+    serviceName: "Service Name",
+    description: "Description",
+    email: "Email",
+    phoneNumber: "Phone Number",
+    tags: "Tags",
+    submitButton: "Create",
   }
   
 };

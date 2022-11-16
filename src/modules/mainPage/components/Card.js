@@ -10,8 +10,10 @@ import {
   Badge,
   useColorModeValue,
 } from '@chakra-ui/react';
+import ServicesRequest from "@src/modules/ServiceRequest/ServicesRequest";
 
-export default function Card({serviceName, description, tags = []}) {
+
+export default function Card({id, serviceName, description, tags = []}) {
   return (
     <Center py={6} px={4}>
       <Box
@@ -75,7 +77,9 @@ export default function Card({serviceName, description, tags = []}) {
             }}>
             Message
           </Button>
-          <Button
+          <ServicesRequest serviceId={id}/>
+
+          {/* <Button
             flex={1}
             fontSize={'sm'}
             rounded={'full'}
@@ -91,7 +95,8 @@ export default function Card({serviceName, description, tags = []}) {
               bg: 'blue.500',
             }}>
             Follow
-          </Button>
+          </Button> */}
+          
         </Stack>
       </Box>
     </Center>
