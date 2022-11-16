@@ -36,11 +36,7 @@ export const setLanguage = (newLanguage) => {
 
 export const getUser = () => {
   try {
-<<<<<<< HEAD
-    const value = localStorage.getItem('userData');
-=======
     const value = JSON.parse(localStorage.getItem('userData'));
->>>>>>> create-service
     if (!value) throw Error();
 
     return value;

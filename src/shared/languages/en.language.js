@@ -39,29 +39,6 @@ const EnglishDictionary = {
       notSpacesAndSpecialCharacters:
         "Not white spaces and special character supported",
     },
-<<<<<<< HEAD
-  },
-  login: {
-    title: "Login",
-    email: "Email",
-    password: "Password",
-    submitButton: "Login",
-    forgotPassword: "Forgot your password?",
-    signUp: "Don't have an account? Sign up",
-  },
-  navBar: {
-    loginButton: "Login",
-    logoutButton: "Logout",
-  },
-  profileSettings: {
-    title: "Profile Settings",
-    fullName: "Name",
-    email: "Email",
-    password: "Password",
-    legalDocumentId: "Legal Document",
-    updateButton: "Update",
-=======
->>>>>>> create-service
   },
   login: {
     title: "Login",

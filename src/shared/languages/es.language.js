@@ -39,29 +39,6 @@ const SpanishDictionary = {
       notSpacesAndSpecialCharacters:
         "No se permite espacios ni caracteres especiales",
     },
-<<<<<<< HEAD
-  },
-  login: {
-    title: "Iniciar sesión",
-    email: "Correo electrónico",
-    password: "Contraseña",
-    submitButton: "Iniciar sesión",
-    forgotPassword: "¿Olvidaste tu contraseña?",
-    signUp: "¿No tienes una cuenta? Regístrate",
-  },
-  navBar: {
-    loginButton: "Iniciar sesión",
-    logoutButton: "Cerrar sesión",
-  },
-  profileSettings: {
-    title: "Configuración de perfil",
-    fullName: "Nombre",
-    email: "Correo electrónico",
-    password: "Contraseña",
-    legalDocumentId: "Documento legal",
-    updateButton: "Actualizar",
-=======
->>>>>>> create-service
   },
   login: {
     title: "Iniciar sesión",

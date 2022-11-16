@@ -10,15 +10,10 @@ import {
   Badge,
   useColorModeValue,
 } from '@chakra-ui/react';
-<<<<<<< HEAD
-
-export default function Card({servicesName, description, tags = []}) {
-=======
 import ServicesRequest from "@src/modules/ServiceRequest/ServicesRequest";
 
 
 export default function Card({id, serviceName, description, tags = []}) {
->>>>>>> create-service
   return (
     <Center py={6} px={4}>
       <Box
@@ -50,11 +45,7 @@ export default function Card({id, serviceName, description, tags = []}) {
           }}
         /> */}
         <Heading fontSize={'2xl'} fontFamily={'body'}>
-<<<<<<< HEAD
-          {servicesName}
-=======
           {serviceName}
->>>>>>> create-service
         </Heading>
 
         <Text
@@ -65,20 +56,12 @@ export default function Card({id, serviceName, description, tags = []}) {
           {description}
         </Text>
 
-<<<<<<< HEAD
-        <Stack align={'center'} justify={'center'} direction={'row'} mt={4}>
-=======
         <Stack align={'center'} justify={'center'} direction={'row'} mt={4} flexWrap='wrap'>
->>>>>>> create-service
           {tags.map((tag, i)=>(<Badge
             key={i}
             px={2}
             py={1}
-<<<<<<< HEAD
-            bg={useColorModeValue('gray.50', 'gray.800')}
-=======
             bg={'gray.50'}
->>>>>>> create-service
             fontWeight={'400'}>
             {tag}
           </Badge>))}
@@ -94,13 +77,9 @@ export default function Card({id, serviceName, description, tags = []}) {
             }}>
             Message
           </Button>
-<<<<<<< HEAD
-          <Button
-=======
           <ServicesRequest serviceId={id}/>
 
           {/* <Button
->>>>>>> create-service
             flex={1}
             fontSize={'sm'}
             rounded={'full'}
@@ -116,12 +95,8 @@ export default function Card({id, serviceName, description, tags = []}) {
               bg: 'blue.500',
             }}>
             Follow
-<<<<<<< HEAD
-          </Button>
-=======
           </Button> */}
           
->>>>>>> create-service
         </Stack>
       </Box>
     </Center>
