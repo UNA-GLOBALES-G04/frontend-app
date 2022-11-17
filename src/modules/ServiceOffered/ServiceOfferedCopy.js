@@ -77,12 +77,12 @@ const ServiceOfferedCopy = ({ serviceId }) => {
           <Box
             maxW={"900px"}
             w={["100%", "100%", "65%"]}
-            bg={useColorModeValue("white", "gray.800")}
+            bg={"white"}
             boxShadow={"2xl"}
             rounded={"md"}
             overflow={"hidden"}
           >
-            <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
+            <Box bg={"white"} px={6} py={10}>
               <Text fontSize={"2xl"} fontWeight={800}>
                 {data?.data?.serviceName}
               </Text>
@@ -103,9 +103,9 @@ const ServiceOfferedCopy = ({ serviceId }) => {
             <HStack
               textAlign={"left"}
               p={6}
-              color={useColorModeValue("gray.800", "white")}
+              color={"gray.800"}
               align={"left"}
-              bg={useColorModeValue("gray.50", "gray.900")}
+              bg={"gray.50"}
               spacing="20px"
             >
               <Stack direction={"column"} align={"left"} justify={"left"}>
