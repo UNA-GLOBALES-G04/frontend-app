@@ -54,7 +54,7 @@ const MainPage = () => {
             size='xl'/>
           </Center>
         ) :
-        <Flex wrap={"wrap"}>
+        <Flex wrap={"wrap"} gap='8px'>
           {data?.data?.map((service, i) => (
             <Card key={i} {...service} />
           ))}

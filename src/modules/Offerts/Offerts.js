@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
 import { useTranslation } from "../../shared/hooks";
 
 import {
@@ -19,38 +17,6 @@ import { MyServices, Offert } from "./components";
 import { useUpdateUser } from "@src/shared/hooks";
 import { useEffect } from "react";
 
-//import { PhoneIcon, AddIcon, StarIcon } from "@chakra-ui/icons";
-
-let OffertsExa = [
-  {
-    userName: "Jose Montero Molina",
-    profesion: "Se busca arquitecto",
-    date: "28/10/2022",
-    time: "8:00 PM",
-    details:
-      "Se requiere un plano para una segunda planta a una casa con el fin de colocra dos curatos, sala star y un bano compelto, con un presupuesto de 20 millones",
-    direction: "Calle 12 # 12 - 12",
-  },
-  {
-    userName: "Jose Montero Molina",
-    profesion: "Se busca arquitecto",
-    date: "28/10/2022",
-    time: "8:00 PM",
-    direction: "Calle 12 # 12 - 12",
-    details:
-      "Se requiere un plano para una segunda planta a una casa con el fin de colocra dos curatos, sala star y un bano compelto, con un presupuesto de 20 millones",
-  },
-  {
-    userName: "Jose Montero Molina",
-    profesion: "Se busca arquitecto",
-    date: "28/10/2022",
-    time: "8:00 PM",
-    direction: "Calle 12 # 12 - 12",
-    details:
-      "Se requiere un plano para una segunda planta a una casa con el fin de colocra dos curatos, sala star y un bano compelto, con un presupuesto de 20 millones",
-  },
-];
-
 const Offerts = () => {
   const { language, t, switchLanguage } = useTranslation();
 
@@ -61,10 +27,6 @@ const Offerts = () => {
     () => getMyOrdersVendor(user.token, 'PENDING'),
     { enabled: !!user?.token }
   );
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   useEffect(() => {
     if (user?.token) {
@@ -100,7 +62,6 @@ const Offerts = () => {
           </Center>
         ) : (
           data?.data?.map((offert, i) => {
-            console.log(offert.id)
             return (
               <div key={i}>
                 <Offert offert={offert} user={user} refetch={refetch}/>

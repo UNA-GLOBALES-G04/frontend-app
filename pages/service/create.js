@@ -17,6 +17,7 @@ import {
   Text,
   useColorModeValue,
   Link,
+  useToast
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { withoutAuth } from '@src/shared/components';
@@ -68,7 +69,7 @@ const CreateService = () => {
   const { language, t, switchLanguage} = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const { user, signIn } = useUpdateUser();
-
+  const toast = useToast();
 
   const initialValues = {
     serviceName: '',
@@ -81,7 +82,11 @@ const CreateService = () => {
 
 
   const validationSchema = Yup.object().shape({
-    
+    serviceName: Yup.string().required('Required'),
+    description: Yup.string().required('Required'),
+    email: Yup.string().required('Required'),
+    phoneNumber: Yup.string().required('Required'),
+    tags: Yup.string().required('Required'),
   })
 
   const onSubmit = async () => {
@@ -94,8 +99,23 @@ const CreateService = () => {
     try{
       await createService({...values, tags: tagsArray}, user.token);
       setIsLoading(false);
+      toast({
+        title: t("createService.title"),
+        description: t("createService.successfullMessage"),
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      resetForm();
     }
     catch(error){
+      toast({
+        title: t("createService.title"),
+        description: t("createService.errorMessage"),
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
       console.log(error);
     }
     setIsLoading(false);
@@ -114,6 +134,7 @@ const CreateService = () => {
     values,
     errors,
     touched,
+    resetForm,
     handleChange,
     setFieldValue,
     setFieldTouched,
@@ -121,11 +142,6 @@ const CreateService = () => {
     handleSubmit,
     validateForm,
   } = formikProps;
-
-  useEffect(() => {
-    console.log('values', values);
-  }, [values]);
-  
   
   return (
     <Flex

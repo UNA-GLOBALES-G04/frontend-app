@@ -61,6 +61,13 @@ const SpanishDictionary = {
     alreadyUser_2: "Iniciar sesión",
   },
   navBar: {
+    home: "Inicio",
+    profile: "Perfil",
+    myProfile: "Mi Perfil",
+    updateProfile: "Actualizar perfil",
+    service: "Servicio",
+    allServices: "Todos los servicios",
+    serviceRequest: "Solicitar servicio",
     loginButton: "Iniciar sesión",
     logoutButton: "Cerrar sesión",
   },
@@ -86,12 +93,16 @@ const SpanishDictionary = {
     direction: "Dirección",
     requiredDate: "Fecha y hora",
     description: "Descripción",
+
   },
   orderToast:{
     title: "Solicitud de servicio",
     description: "Se ha realizado la solicitud de servicio",
+    errorMessage: "Ha ocurrido un error al realizar la solicitud de servicio",
   },
   createService: {
+    errorMessage: "Error al crear el servicio",
+    successfullMessage: "Servicio creado exitosamente",
     title: "Crear un servicio",
     serviceName: "Nombre del servicio",
     description: "Descripción",
@@ -100,6 +111,10 @@ const SpanishDictionary = {
     tags: "Etiquetas",
     submitButton: "Crear servicio",
   },
+  serviceCard:{
+    viewServiceButton: "Ver servicio",
+  },
+
 
 
 };

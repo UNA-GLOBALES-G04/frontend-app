@@ -101,6 +101,13 @@ const ServicesRequest = ({ serviceId }) => {
         isClosable: true,
       });
     } catch (error) {
+      toast({
+        title: t("orderToast.title"),
+        description: t("orderToast.errorMessage"),
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
       console.log(error);
     }
     setIsLoading(false);
@@ -118,6 +125,7 @@ const ServicesRequest = ({ serviceId }) => {
   return (
     <Flex>
       <Button
+        disabled={!user}
         flex={1}
         fontSize={"sm"}
         rounded={"full"}
@@ -168,7 +176,6 @@ const ServicesRequest = ({ serviceId }) => {
               </Box>
               <Box>
                 <Button onClick={handleSubmit} isLoading={isLoading}>
-                  {" "}
                   {t("orderModal.submitButton")}
                 </Button>
               </Box>

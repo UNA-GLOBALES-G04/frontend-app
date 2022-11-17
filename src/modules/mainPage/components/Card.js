@@ -11,11 +11,16 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import ServicesRequest from "@src/modules/ServiceRequest/ServicesRequest";
-
+import { useTranslation } from "@src/shared/hooks";
+import { useRouter } from "next/router";
 
 export default function Card({id, serviceName, description, tags = []}) {
+
+  const { t } = useTranslation();
+  const router = useRouter()
+
   return (
-    <Center py={6} px={4}>
+    <Center py={4} >
       <Box
         maxW={'320px'}
         w={'full'}
@@ -72,10 +77,11 @@ export default function Card({id, serviceName, description, tags = []}) {
             flex={1}
             fontSize={'sm'}
             rounded={'full'}
+            onClick={()=>router.push(`/service/${id}`)}
             _focus={{
               bg: 'gray.200',
             }}>
-            Message
+            {t('serviceCard.viewServiceButton')}
           </Button>
           <ServicesRequest serviceId={id}/>
 
