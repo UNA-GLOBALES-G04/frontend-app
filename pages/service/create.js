@@ -20,7 +20,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { withoutAuth } from '@src/shared/components';
+import { withAuth } from "@src/shared/components";
 import { useRouter } from 'next/router';
 import { FormControl } from "@src/shared/components";
 import {useTranslation} from '../../src/shared/hooks';
@@ -198,4 +198,4 @@ const CreateService = () => {
   )
 }
 
-export default (CreateService);
+export default withAuth(CreateService);

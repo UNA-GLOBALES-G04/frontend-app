@@ -12,24 +12,25 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { getMyOrdersVendor } from "@src/shared/api/order";
-import { MyServices, Offert } from "./components";
+import { getMyOrders } from "@src/shared/api/order";
+import { MyServices, Offert } from "../Offerts/components";
 import { useUpdateUser } from "@src/shared/hooks";
 import { useEffect } from "react";
 
-const Offerts = () => {
+const OrdersOtherUser = () => {
   const { language, t, switchLanguage } = useTranslation();
 
   const { user } = useUpdateUser();
 
   const { data, isLoading, error, refetch } = useQuery(
-    ["offers-list"],
-    () => getMyOrdersVendor(user.token, [ 'ACCEPTED', 'PENDING', 'REJECTED' ]),
+    ["my-orders"],
+    () => getMyOrders(user.token),
     { enabled: !!user?.token }
   );
 
   useEffect(() => {
     if (user?.token) {
+      console.log('user: ', user);
       refetch();
     }
   }, [user]);
@@ -63,7 +64,7 @@ const Offerts = () => {
           data?.data?.map((offert, i) => {
             return (
               <div key={i}>
-                <Offert offert={offert} user={user} refetch={refetch}/>
+                <Offert offert={offert} user={user} refetch={refetch} otherUser={true} />
                 <br/>
               </div>
             );
@@ -74,4 +75,4 @@ const Offerts = () => {
   );
 };
 
-export default Offerts;
+export default OrdersOtherUser;

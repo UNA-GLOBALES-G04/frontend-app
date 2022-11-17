@@ -20,8 +20,6 @@ import {
   Spinner
 } from "@chakra-ui/react";
 
-import { Experience, PortfolioItem, Education, Schedule } from "./components";
-
 import { getRatingByServiceId, getServiceById } from "@src/shared/api/service";
 import { useQuery } from "@tanstack/react-query";
 
@@ -110,14 +108,14 @@ const ServiceOfferedCopy = ({ serviceId }) => {
             >
               <Stack direction={"column"} align={"left"} justify={"left"}>
                 <Text fontSize={"2xl"} fontWeight={800}>
-                  Informacion de contacto
+                  {t('serviceCard.contactInfo')}: 
                 </Text>
                 <Stack direction={"row"} align={"left"} justify={"left"}>
-                  <Text fontWeight={600}>Email: </Text>
+                  <Text fontWeight={600}>{t('serviceCard.email')}: </Text>
                   <Text>{data?.data?.email}</Text>
                 </Stack>
                 <Stack direction={"row"} align={"left"} justify={"left"}>
-                  <Text fontWeight={600}>Phone number: </Text>
+                  <Text fontWeight={600}>{t('serviceCard.phoneNumber')}: </Text>
                   <Text>{data?.data?.phoneNumber}</Text>
                 </Stack>
               </Stack>
@@ -125,33 +123,9 @@ const ServiceOfferedCopy = ({ serviceId }) => {
                 <ServicesRequest serviceId={serviceId} />
               </Center>
             </HStack>
-            {/* <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
-              <Experience />
-            </Box>
-            <Stack
-              textAlign={"left"}
-              p={6}
-              color={useColorModeValue("gray.800", "white")}
-              align={"left"}
-              bg={useColorModeValue("gray.50", "gray.900")}
-            >
-              <Stack direction={"row"} align={"left"} justify={"left"}>
-                <Text fontSize={"2xl"} fontWeight={800}>
-                  Algunos de mis proyectos
-                </Text>
-              </Stack>
-            </Stack> 
-            <Box bg={useColorModeValue("white", "white")} px={6} py={10}>
-              <Flex overflowX='scroll'>
-                <PortfolioItem />
-              </Flex>
-            </Box>*/}
+            
           </Box>
         )}
-        {/*<Box   w={["100%","100%","30%"]}>
-          <Education />
-        </Box>
-        */}
       </Flex>
     </div>
   );

@@ -70,6 +70,9 @@ const SpanishDictionary = {
     serviceRequest: "Solicitar servicio",
     loginButton: "Iniciar sesión",
     logoutButton: "Cerrar sesión",
+    createService: "Crear servicio",
+    myOrders: "Mis ordenes",
+    resquestedOrders: "Ordenes solicitadas",
   },
   profileSettings: {
     title: "Configuración de perfil",
@@ -113,6 +116,26 @@ const SpanishDictionary = {
   },
   serviceCard:{
     viewServiceButton: "Ver servicio",
+    contactInfo: "Información de contacto",
+    email: "Correo electrónico",
+    phoneNumber: "Número de teléfono",
+  },
+  orderList: {
+    titleOrderOtherUser: "Solicitudes de servicio enviadas",
+    titleOrderTodo: "Solicitudes de servicio recibidas",
+    acceptButton: "Aceptar",
+    rejectButton: "Rechazar",
+    completeButton: "Completar",
+    acceptToastTitle: "Solicitud aceptada",
+    acceptToastDescription: "La solicitud de servicio ha sido aceptada",
+    rejectToastTitle: "Solicitud rechazada",
+    rejectToastDescription: "La solicitud de servicio ha sido rechazada",
+    completeToastTitle: "Solicitud completada",
+    completeToastDescription: "La solicitud de servicio ha sido completada",
+  },
+  profileService: {
+    description: "Descripción",
+    linkButton: "Ver servicio",
   },
 
 

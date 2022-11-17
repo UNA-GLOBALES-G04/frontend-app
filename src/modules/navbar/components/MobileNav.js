@@ -39,36 +39,37 @@ const MobileNav = () => {
       href: "/",
     },
     {
-      label: t("navBar.profile"),
-      children: [
-        {
-          label: t("navBar.myProfile"),
-          subLabel: "Find your dream design job",
-          href: "/profileid",
-        },
-        {
-          label: t("navBar.updateProfile"),
-          subLabel: "Find your dream design job",
-          href: "/updateProfile",
-        },
-      ],
-    },
-    {
       label: t("navBar.service"),
       children: [
         {
           label: t("navBar.allServices"),
-          subLabel: "Find your dream design job",
           href: "/services-list",
         },
         {
-          label: t("navBar.serviceRequest"),
-          subLabel: "Find your dream design job",
-          href: "#",
+          label: t("navBar.createService"),
+          href: "/service/create",
         },
       ],
     },
   ];
+
+  const USER_NAV_ITEM = {
+    label: t("navBar.profile"),
+    children: [
+      {
+        label: t("navBar.myProfile"),
+        href: `/profile/${user?.id}`,
+      },
+      {
+        label: t("navBar.myOrders"),
+        href: "/service/my-orders",
+      },
+      {
+        label: t("navBar.resquestedOrders"),
+        href: "/profile/orders-todo",
+      }
+    ],
+  }
 
   return (
     <Stack
@@ -79,6 +80,10 @@ const MobileNav = () => {
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
+
+      {user && (
+        <MobileNavItem key={USER_NAV_ITEM.label} {...USER_NAV_ITEM} />
+      )}
 
       {user ? (
         <Button

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 import { useTranslation } from "../../src/shared/hooks";
 import { FormControl } from "../../src/shared/components";
-import { withAuth } from "../../src/shared/components";
+import { withAuth } from "@src/shared/components";
 import { updateUser } from "@src/shared/api/user";
 import { useUpdateUser } from "@src/shared/hooks";
 

@@ -70,6 +70,9 @@ const EnglishDictionary = {
     serviceRequest: "Service Request",
     loginButton: "Login",
     logoutButton: "Logout",
+    createService: "Create Service",
+    myOrders: "My Orders",
+    resquestedOrders: "Requested Orders",
   },
   profileSettings: {
     title: "Profile Settings",
@@ -112,7 +115,27 @@ const EnglishDictionary = {
   },
   serviceCard:{
     viewServiceButton: "View Service",
-  }
+    contactInfo: "Contact Info",
+    email: "Email",
+    phoneNumber: "Phone Number",
+  },
+  orderList: {
+    titleOrderOtherUser: "Service orders sent",
+    titleOrderTodo: "Service orders received",
+    acceptButton: "Accept",
+    rejectButton: "Reject",
+    completeButton: "Complete",
+    acceptToastTitle: "Order accepted",
+    acceptToastDescription: "The order has been accepted",
+    rejectToastTitle: "Order rejected",
+    rejectToastDescription: "The order has been rejected",
+    completeToastTitle: "Order completed",
+    completeToastDescription: "The order has been completed",
+  },
+  profileService: {
+    description: "Description",
+    linkButton: "See service",
+  },
   
 };
 
