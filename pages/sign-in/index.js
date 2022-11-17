@@ -66,7 +66,6 @@ const SignIn = () => {
       setIsLoading(true);
       const response = await signInApi(values);
       await signIn(response);
-      console.log('response', response);
     }
     catch(error){
       console.log('error', error);

@@ -90,7 +90,6 @@ const CreateService = () => {
   })
 
   const onSubmit = async () => {
-    console.log(values)
     const { tags } = values;
 
     const tagsArray = tags.split(',');

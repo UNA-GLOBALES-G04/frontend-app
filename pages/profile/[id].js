@@ -7,10 +7,6 @@ const ServicesTest = () => {
   const router = useRouter()
   const { id } = router.query
 
-  useEffect(() => {
-    console.log("id", id);
-  }, [id]);
-
   return (
     <div>
       {id && <UserProfile userId={id}/>}
