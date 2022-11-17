@@ -74,7 +74,7 @@ export default function ServicesList() {
             size='xl'/>
           </Center>
         ) : (
-          <Flex wrap={"wrap"}>
+          <Flex wrap={"wrap"} gap='12px'>
             {data?.data?.map((service, i) => (
               <Card key={i} {...service} />
             ))}

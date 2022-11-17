@@ -76,11 +76,11 @@ const ServiceProfile = ({Service}) => {
                 }
               })}
             </Box>
-            <Text>Descripcion: {Service.description}</Text>
+            <Text>{t("profileService.description")}: {Service.description}</Text>
           </Stack>
           <Stack align={"right"} justify={"right"}>
             <Button leftIcon={<ViewIcon />} colorScheme="blue" variant="solid" onClick={()=>router.push(`/service/${Service.id}`)}>
-              Ver servicio
+              {t("profileService.linkButton")}
             </Button>
           </Stack>
         </HStack>

@@ -70,7 +70,7 @@ function FooterComponent() {
         <Logo />
         <Text>© 2022 Conecta2. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
+          {/* <SocialButton label={'Twitter'} href={'#'}>
             <FaTwitter />
           </SocialButton>
           <SocialButton label={'YouTube'} href={'#'}>
@@ -78,7 +78,7 @@ function FooterComponent() {
           </SocialButton>
           <SocialButton label={'Instagram'} href={'#'}>
             <FaInstagram />
-          </SocialButton>
+          </SocialButton> */}
         </Stack>
       </Container>
     </Box>

@@ -39,7 +39,7 @@ const UserProfile = ({ userId }) => {
           rounded={"md"}
           overflow={"hidden"}
         >
-          <CoverPage name={data.data.vendorName} />
+          <CoverPage name={data?.data?.vendorName} />
           {data?.data?.services?.map((service, i) => (
             <ServiceProfile Service={service} key={i} />
           ))}

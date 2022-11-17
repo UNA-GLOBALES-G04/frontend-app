@@ -15,7 +15,7 @@ export const acceptOrder = async (orderInfo, token) =>{
 }
 
 export const completeOrder = async (orderInfo, token) =>{
-  return api.put(`/Order/${orderInfo.serviceId}/${orderInfo.orderId}/complete`, {}, {headers : {Authorization: `Bearer ${token}`}});
+  return api.post(`/Order/${orderInfo.serviceId}/${orderInfo.orderId}/complete`, null , {headers : {Authorization: `Bearer ${token}`}});
 }
 
 export const cancelOrder = async (orderInfo, token) =>{
@@ -23,11 +23,15 @@ export const cancelOrder = async (orderInfo, token) =>{
 }
 
 export const rejectOrder = async (orderInfo, token) =>{
-  return api.delete(`/Order/id/${orderInfo.orderId}/reject`, {headers : {Authorization: `Bearer ${token}`}});
+  return api.delete(`/Order/id/${orderInfo.orderId}/reject`, {headers : {Authorization: `Bearer ${token}`, "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"}});
 }
 
 export const getMyOrdersVendor = async (token, status) =>{
   return api.get(`/Order/vendor/MyOrders`, {headers : {Authorization: `Bearer ${token}`}, params: {status: status}});
+}
+
+export const getMyOrders = async (token) =>{
+  return api.get(`/Order/MyOrders`, {headers : {Authorization: `Bearer ${token}`}});
 }
 
 

@@ -24,7 +24,7 @@ const Offerts = () => {
 
   const { data, isLoading, error, refetch } = useQuery(
     ["offers-list"],
-    () => getMyOrdersVendor(user.token, 'PENDING'),
+    () => getMyOrdersVendor(user.token, [ 'ACCEPTED', 'PENDING', 'REJECTED' ]),
     { enabled: !!user?.token }
   );
 
@@ -36,18 +36,17 @@ const Offerts = () => {
 
   return (
     <Flex flexWrap="wrap" m="40px 32px">
-      {/* <MyServices /> */}
-      <Box
+      <Flex
+        flexDirection="column"
         minW="600px"
-        maxW={"900px"}
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}
       >
-        <Heading bg={useColorModeValue("tranparent", "tranparent")} marginBottom='20px'>
-          Solicitudes
+        <Heading bg={useColorModeValue("tranparent", "tranparent")} marginBottom='20px' marginLeft='20px'>
+          {t("orderList.titleOrderOtherUser")}
         </Heading>
 
         {isLoading ? (
@@ -70,7 +69,7 @@ const Offerts = () => {
             );
           })
         )}
-      </Box>
+      </Flex>
     </Flex>
   );
 };

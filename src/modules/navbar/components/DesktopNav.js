@@ -1,4 +1,4 @@
-import { useTranslation } from "@src/shared/hooks";
+import { useTranslation, useUpdateUser } from "@src/shared/hooks";
 
 import {
   Box,
@@ -17,12 +17,6 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
 
 import { DesktopSubNav } from "./";
 
@@ -36,13 +30,11 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Mi Perfil",
-        subLabel: "Find your dream design job",
         href: "/profileid",
       },
       {
         label: "Actualizar Perfil",
-        subLabel: "Find your dream design job",
-        href: "/updateProfile",
+        href: "/user/update-profile",
       },
     ],
   },
@@ -51,12 +43,10 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Mis Servicios",
-        subLabel: "Find your dream design job",
         href: "/services-list",
       },
       {
         label: "Solicitar Servicio",
-        subLabel: "Find your dream design job",
         href: "#",
       },
     ],
@@ -67,6 +57,7 @@ const NAV_ITEMS = [
 
 const DesktopNav = () => {
   const { language, t, switchLanguage } = useTranslation();
+  const { user, signOut } = useUpdateUser();
 
   const NAV_ITEMS = [
     {
@@ -74,36 +65,37 @@ const DesktopNav = () => {
       href: "/",
     },
     {
-      label: t("navBar.profile"),
-      children: [
-        {
-          label: t("navBar.myProfile"),
-          subLabel: "Find your dream design job",
-          href: "/profileid",
-        },
-        {
-          label: t("navBar.updateProfile"),
-          subLabel: "Find your dream design job",
-          href: "/updateProfile",
-        },
-      ],
-    },
-    {
       label: t("navBar.service"),
       children: [
         {
           label: t("navBar.allServices"),
-          subLabel: "Find your dream design job",
-          href: "/services-list",
+            href: "/services-list",
         },
         {
-          label: t("navBar.serviceRequest"),
-          subLabel: "Find your dream design job",
-          href: "#",
+          label: t("navBar.createService"),
+          href: "/service/create",
         },
       ],
     },
   ];
+
+  const USER_NAV_ITEM = {
+    label: t("navBar.profile"),
+    children: [
+      {
+        label: t("navBar.myProfile"),
+        href: `/profile/${user?.id}`,
+      },
+      {
+        label: t("navBar.myOrders"),
+        href: "/service/my-orders",
+      },
+      {
+        label: t("navBar.resquestedOrders"),
+        href: "/service/orders-todo",
+      }
+    ],
+  }
 
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
@@ -149,6 +141,43 @@ const DesktopNav = () => {
           </Popover>
         </Box>
       ))}
+      {user && (
+        <Box key={USER_NAV_ITEM.label}>
+        <Popover trigger={"hover"} placement={"bottom-start"}>
+          <PopoverTrigger>
+            <Link
+              p={2}
+              href={USER_NAV_ITEM.href ?? "#"}
+              fontSize={"sm"}
+              fontWeight={500}
+              color={linkColor}
+              _hover={{
+                textDecoration: "none",
+                color: linkHoverColor,
+              }}
+            >
+              {USER_NAV_ITEM.label}
+            </Link>
+          </PopoverTrigger>
+
+          {USER_NAV_ITEM.children && (
+            <PopoverContent
+              border={0}
+              boxShadow={"xl"}
+              bg={popoverContentBgColor}
+              p={4}
+              rounded={"xl"}
+              minW={"sm"}
+            >
+              <Stack>
+                {USER_NAV_ITEM.children.map((child) => (
+                  <DesktopSubNav key={child.label} {...child} />
+                ))}
+              </Stack>
+            </PopoverContent>
+          )}
+        </Popover>
+      </Box>)}
     </Stack>
   );
 };
