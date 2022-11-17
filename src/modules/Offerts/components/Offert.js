@@ -15,24 +15,26 @@ import {
   Button,
   Stack,
   useColorModeValue,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { getUser } from "@src/shared/api/user";
 import { useQuery } from "@tanstack/react-query";
 import { CheckIcon, CloseIcon, ViewIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
-import { acceptOrder, completeOrder,  rejectOrder} from "@src/shared/api/order";
+import { acceptOrder, completeOrder, rejectOrder } from "@src/shared/api/order";
 
-const Offert = ({offert, refetch, user, otherUser = false}) => {
+const Offert = ({ offert, refetch, user, otherUser = false }) => {
   const { language, t, switchLanguage } = useTranslation();
   const toast = useToast();
   const { data, isLoading, error } = useQuery(["user"], () =>
     getUser(offert.userProfileId)
   );
 
-
   const acceptOrderOnclick = async () => {
-    const response = await acceptOrder({serviceId: offert.serviceId, orderId: offert.id}, user.token);
+    const response = await acceptOrder(
+      { serviceId: offert.serviceId, orderId: offert.id },
+      user.token
+    );
     toast({
       title: t("orderList.acceptToastTitle"),
       description: t("orderList.acceptToastDescription"),
@@ -42,10 +44,13 @@ const Offert = ({offert, refetch, user, otherUser = false}) => {
     });
     refetch();
     console.log(response);
-  }
+  };
 
   const completeOrderOnclick = async () => {
-    const response = await completeOrder({serviceId: offert.serviceId, orderId: offert.id}, user.token);
+    const response = await completeOrder(
+      { serviceId: offert.serviceId, orderId: offert.id },
+      user.token
+    );
     toast({
       title: t("orderList.completeToastTitle"),
       description: t("orderList.completeToastDescription"),
@@ -55,11 +60,13 @@ const Offert = ({offert, refetch, user, otherUser = false}) => {
     });
     refetch();
     console.log(response);
-  }
+  };
 
   const rejectOrderOnclick = async () => {
-    
-    const response = await rejectOrder({serviceId: offert.serviceId, orderId: offert.id}, user.token);
+    const response = await rejectOrder(
+      { serviceId: offert.serviceId, orderId: offert.id },
+      user.token
+    );
     toast({
       title: t("orderList.rejectToastTitle"),
       description: t("orderList.rejectToastDescription"),
@@ -69,59 +76,63 @@ const Offert = ({offert, refetch, user, otherUser = false}) => {
     });
     refetch();
     console.log(response);
-  }
+  };
 
   return (
     <div>
       <Box
         maxW={"900px"}
         w={"full"}
-        margin='auto'
+        margin="auto"
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}
       >
         <Box bg={useColorModeValue("gray.50", "gray.900")} px={15} py={8}>
-          <HStack justifyContent='space-between'>
+          <HStack justifyContent="space-between">
             <Stack>
               <Text fontSize={"2xl"} fontWeight={800}>
                 {data?.data?.vendorName}
               </Text>
-              <Text>
-                Fecha y hora: {offert.requiredDate}
-              </Text>
+              <Text>Fecha y hora: {offert.requiredDate}</Text>
               <Text>Detalle: {offert.description}</Text>
               <Text>Dirección: {offert.direction}</Text>
               <Text>Dirección: {offert.current_status}</Text>
             </Stack>
-            {offert.current_status !== 'COMPLETED' && offert.current_status !== 'REJECT' && !otherUser && <Stack align={"right"} justify={"right"}>
-              
-              { offert.current_status === 'COMPLETED'? (<Button
-                leftIcon={<CheckIcon />}
-                colorScheme="green"
-                variant="solid"
-                onClick={acceptOrderOnclick}
-              >
-                {t("orderList.accept")}
-              </Button>)
-              : (<Button
-                leftIcon={<CheckIcon />}
-                colorScheme="green"
-                variant="solid"
-                onClick={completeOrderOnclick}
-              >
-                {t("orderList.complete")}
-              </Button>)}
-              <Button
-                leftIcon={<CloseIcon />}
-                colorScheme="red"
-                variant="solid"
-                onClick={rejectOrderOnclick}
-              >
-                {t("orderList.reject")}
-              </Button>
-            </Stack>}
+            {offert.current_status !== "COMPLETED" &&
+              offert.current_status !== "REJECT" &&
+              !otherUser && (
+                <Stack align={"right"} justify={"right"}>
+                  {offert.current_status === "ACCEPTED" ? (
+                    <Button
+                      leftIcon={<CheckIcon />}
+                      colorScheme="green"
+                      variant="solid"
+                      onClick={completeOrderOnclick}
+                    >
+                      {t("orderList.completeButton")}
+                    </Button>
+                  ) : (
+                    <Button
+                      leftIcon={<CheckIcon />}
+                      colorScheme="green"
+                      variant="solid"
+                      onClick={acceptOrderOnclick}
+                    >
+                      {t("orderList.acceptButton")}
+                    </Button>
+                  )}
+                  <Button
+                    leftIcon={<CloseIcon />}
+                    colorScheme="red"
+                    variant="solid"
+                    onClick={rejectOrderOnclick}
+                  >
+                    {t("orderList.rejectButton")}
+                  </Button>
+                </Stack>
+              )}
           </HStack>
         </Box>
       </Box>
