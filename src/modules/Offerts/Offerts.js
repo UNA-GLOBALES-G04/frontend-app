@@ -45,7 +45,7 @@ const Offerts = () => {
         overflow={"hidden"}
       >
         <Heading bg={useColorModeValue("tranparent", "tranparent")} marginBottom='20px' marginLeft='20px'>
-          {t("orderList.titleOrderOtherUser")}
+          {t("orderList.titleOrderTodo")}
         </Heading>
 
         {isLoading ? (
