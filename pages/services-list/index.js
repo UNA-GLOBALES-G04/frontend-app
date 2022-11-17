@@ -39,13 +39,8 @@ export default function ServicesList() {
   );
 
   useEffect(() => {
-    console.log("searchTerm", searchTerm);
     refetch();
   }, [searchTerm]);
-
-  useEffect(() => {
-    console.log("data", data);
-  }, [data]);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);

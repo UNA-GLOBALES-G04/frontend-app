@@ -43,7 +43,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   const completeOrderOnclick = async () => {
@@ -59,7 +58,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   const rejectOrderOnclick = async () => {
@@ -75,7 +73,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   return (

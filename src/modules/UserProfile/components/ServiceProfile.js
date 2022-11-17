@@ -47,7 +47,6 @@ const ServiceProfile = ({Service}) => {
         rating.push(false);
       }
     }
-    console.log('rating', rating)
     setRating(rating);
   }
     

@@ -19,7 +19,6 @@ const withoutAuth = (Component) => {
           userData = StorageService.getUser();
           setUser(userData);
         }
-        console.log('userData', userData);
         if (userData) {
           router.push("/");
         } else {

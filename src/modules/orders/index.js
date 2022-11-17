@@ -30,7 +30,6 @@ const OrdersOtherUser = () => {
 
   useEffect(() => {
     if (user?.token) {
-      console.log('user: ', user);
       refetch();
     }
   }, [user]);
