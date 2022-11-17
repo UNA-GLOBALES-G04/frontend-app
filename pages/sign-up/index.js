@@ -6,6 +6,7 @@ import {
   Flex,
   Box,
   FormControl as ChakraFormControl,
+  useToast,
   FormLabel,
   Input,
   InputGroup,
@@ -81,11 +82,15 @@ const SignUp = () => {
   }
   const router = useRouter();
   const goToLogin = () => { router.push('/sign-in') }
-
+  const toast = useToast();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().required(),
+    fullName: Yup.string().required('Required'),
+    legalDocumentId: Yup.string().required('Required'),
+    birthday: Yup.string().required('Required'),
+    email: Yup.string().required('Required'),
+    password: Yup.string().required('Required'),
+    address: Yup.string().required('Required'),
   })
 
   const onSubmit = async (event) => {
@@ -95,9 +100,24 @@ const SignUp = () => {
     try{
       await signUpApi({userInfo: { fullName, legalDocumentId, birthDate: `${birthday}T00:00:00Z`, email, address, profilePictureID: '' }, authInfo: {email, password}});
       setIsLoading(false);
+      toast({
+        title: t('signUp.successfullMessageTitle'),
+        description: t('signUp.successfullMessageBody'),
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
       goToLogin();
     }
     catch(error){
+      setIsLoading(false);
+      toast({
+        title: t('signUp.errorMessageTitle'),
+        description: t('signUp.errorMessageBody'),
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
       console.log(error);
     }
     setIsLoading(false);
@@ -131,7 +151,7 @@ const SignUp = () => {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} >
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textAlign={'center'}>
             {t('signUp.title')}
@@ -143,7 +163,7 @@ const SignUp = () => {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}
-          minW='400px'>
+          minW={['0px','400px','400px']}>
           <Stack spacing={4}>
             {InpustData.map((input, index) => (
               <FormControl

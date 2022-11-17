@@ -132,7 +132,7 @@ const SignIn = () => {
                 justify={"space-between"}
               >
                 
-                <Link color={"blue.400"}>{t('login.forgotPassword')}</Link>
+                <Link href='/sign-up' color={"blue.400"}>{t('login.signUp')}</Link>
               </Stack>
               <Button
                 bg={"blue.400"}

@@ -59,6 +59,10 @@ const EnglishDictionary = {
     submitButton: "Sign up",
     alreadyUser_1: "Already have an account?",
     alreadyUser_2: "Login",
+    successfullMessageTitle: "Successfull",
+    successfullMessageBody: "Your account has been created",
+    errorMessageTitle: "Error",
+    errorMessageBody: "Please, try again",
   },
   navBar: {
     home: "Home",
@@ -83,6 +87,10 @@ const EnglishDictionary = {
     password: "Password",
     legalDocumentId: "Legal Document",
     updateButton: "Update",
+    successfullMessageTitle: "Profile updated",
+    successfullMessageBody: "Your profile has been updated successfully",
+    errorMessageTitle: "Error updating profile",
+    errorMessageBody: "An error has occurred while updating your profile",
     
   },
   languagesModal: {
@@ -136,6 +144,12 @@ const EnglishDictionary = {
     description: "Description",
     linkButton: "See service",
   },
+  offert:{
+    dateAndTime: "Date and time",
+    description: "Description",
+    direction: "Direction",
+    status: "Status",
+  }
   
 };
 
