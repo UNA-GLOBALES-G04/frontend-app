@@ -26,7 +26,7 @@ import { acceptOrder, completeOrder, rejectOrder } from "@src/shared/api/order";
 const Offert = ({ offert, refetch, user, otherUser = false }) => {
   const { language, t, switchLanguage } = useTranslation();
   const toast = useToast();
-  const { data, isLoading, error } = useQuery(["user"], () =>
+  const { data, isLoading, error } = useQuery(["offert", offert.id], () =>
     getUser(offert.userProfileId)
   );
 
@@ -43,7 +43,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   const completeOrderOnclick = async () => {
@@ -59,7 +58,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   const rejectOrderOnclick = async () => {
@@ -75,7 +73,6 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
       isClosable: true,
     });
     refetch();
-    console.log(response);
   };
 
   return (

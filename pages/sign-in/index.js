@@ -24,6 +24,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   useColorModeValue,
+  useToast
 } from "@chakra-ui/react";
 
 import { useTranslation } from "../../src/shared/hooks";
@@ -47,7 +48,7 @@ const SignIn = () => {
   const { language, t } = useTranslation();
   const [ isLoading, setIsLoading ] = useState(false);
   const router = useRouter();
-
+  const toast = useToast();
   const { user, signIn } = useUpdateUser();
 
   const initialValues = {
@@ -65,10 +66,16 @@ const SignIn = () => {
       setIsLoading(true);
       const response = await signInApi(values);
       await signIn(response);
-      console.log('response', response);
     }
     catch(error){
       console.log('error', error);
+      toast({
+        title: "Error",
+        description: t('login.errorMessage'),
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
     setIsLoading(false);
 

@@ -53,7 +53,6 @@ const ServiceOfferedCopy = ({ serviceId }) => {
           rating.push(false);
         }
       }
-      console.log("rating", rating);
       setRating(rating);
     }
   }, [dataRating]);

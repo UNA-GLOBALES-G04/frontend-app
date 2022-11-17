@@ -47,6 +47,7 @@ const EnglishDictionary = {
     submitButton: "Login",
     forgotPassword: "Forgot your password?",
     signUp: "Don't have an account? Sign up",
+    errorMessage: "Email or password incorrect",
   },
   signUp: {
     title: "Sign up",

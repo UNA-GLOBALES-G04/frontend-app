@@ -47,6 +47,7 @@ const SpanishDictionary = {
     submitButton: "Iniciar sesión",
     forgotPassword: "¿Olvidaste tu contraseña?",
     signUp: "¿No tienes una cuenta? Regístrate",
+    errorMessage: "Correo electrónico o contraseña incorrectos",
   },
   signUp: {
     title: "Regístrate",
