@@ -101,7 +101,7 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
               <Text>{t("offert.status")}: {offert.current_status}</Text>
             </Stack>
             {offert.current_status !== "COMPLETED" &&
-              offert.current_status !== "REJECT" &&
+              offert.current_status !== "REJECTED" &&
               !otherUser && (
                 <Stack align={"right"} justify={"right"}>
                   {offert.current_status === "ACCEPTED" ? (
