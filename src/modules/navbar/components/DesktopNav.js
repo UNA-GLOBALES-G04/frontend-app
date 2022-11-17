@@ -87,6 +87,10 @@ const DesktopNav = () => {
         href: `/profile/${user?.id}`,
       },
       {
+        label: t("navBar.updateProfile"),
+        href: "/profile/update-profile",
+      },
+      {
         label: t("navBar.myOrders"),
         href: "/service/my-orders",
       },
@@ -94,6 +98,7 @@ const DesktopNav = () => {
         label: t("navBar.resquestedOrders"),
         href: "/service/orders-todo",
       }
+      
     ],
   }
 

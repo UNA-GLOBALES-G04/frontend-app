@@ -95,10 +95,10 @@ const Offert = ({ offert, refetch, user, otherUser = false }) => {
               <Text fontSize={"2xl"} fontWeight={800}>
                 {data?.data?.vendorName}
               </Text>
-              <Text>Fecha y hora: {offert.requiredDate}</Text>
-              <Text>Detalle: {offert.description}</Text>
-              <Text>Dirección: {offert.direction}</Text>
-              <Text>Dirección: {offert.current_status}</Text>
+              <Text>{t("offert.dateAndTime")}: {offert.requiredDate}</Text>
+              <Text>{t("offert.description")}: {offert.description}</Text>
+              <Text>{t("offert.direction")}: {offert.direction}</Text>
+              <Text>{t("offert.status")}: {offert.current_status}</Text>
             </Stack>
             {offert.current_status !== "COMPLETED" &&
               offert.current_status !== "REJECT" &&

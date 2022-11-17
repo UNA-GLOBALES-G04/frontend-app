@@ -39,7 +39,6 @@ const OrdersOtherUser = () => {
     <Flex flexWrap="wrap" m="40px 32px">
       <Flex
         flexDirection="column"
-        minW="600px"
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}

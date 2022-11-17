@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Box, Center, Heading, Stack, Button } from "@chakra-ui/react";
+import { Flex, Box, Center, Heading, Stack, Button, useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -39,19 +39,14 @@ const InpustData = [
     name: "email",
     type: "email",
     isRequired: true,
-  },
-  {
-    key: "password",
-    name: "password",
-    type: "password",
-    isRequired: true,
-  },
+  }
 ];
 
 const Profile = () => {
   const { language, t, switchLanguage } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useUpdateUser();
+  const toast = useToast();
 
   const initialValues = {
     fullName: "",
@@ -61,14 +56,20 @@ const Profile = () => {
     password: "",
     address: "",
   };
-
-  const validationSchema = Yup.object().shape({});
+  
+  const validationSchema = Yup.object().shape({
+    fullName: Yup.string().required(t("validation.required")),
+    legalDocumentId: Yup.string().required(t("validation.required")),
+    birthday: Yup.string().required(t("validation.required")),
+    email: Yup.string().required(t("validation.required")),
+    password: Yup.string().required(t("validation.required")),
+    address: Yup.string().required(t("validation.required")),
+  });
 
   const onSubmit = async () => {
     const { fullName, legalDocumentId, birthday, email, address } = values;
     setIsLoading(true);
     try {
-      console.log("token", user);
       await updateUser(
         {
           fullName,
@@ -80,9 +81,23 @@ const Profile = () => {
         },
         user.token
       );
+      toast({
+        title: t("profile.successfullMessageTitle"),
+        description: t("profile.successfullMessageBody"),
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      toast({
+        title: t("profile.errorMessageTitle"),
+        description: t("profile.errorMessageBody"),
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
     setIsLoading(false);
   };

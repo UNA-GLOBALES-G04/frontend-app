@@ -17,7 +17,7 @@ export const signUp = async (dataAccount) => {
 
 export const updateUser = async (userInfo, token) => {
   await api.post(
-    `/Userprofile/profile/user`,
+    `/Userprofile/profile/user/update`,
     { id: "", ...userInfo },
     { headers: { Authorization: `Bearer ${token}` } }
   );

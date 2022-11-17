@@ -59,6 +59,10 @@ const SpanishDictionary = {
     submitButton: "Regístrate",
     alreadyUser_1: "¿Ya tienes una cuenta?",
     alreadyUser_2: "Iniciar sesión",
+    successfullMessageTitle: "Registro exitoso",
+    successfullMessageBody: "Se ha enviado un correo electrónico de confirmación",
+    errorMessageTitle: "Error al registrar",
+    errorMessageBody: "Por favor, intente nuevamente",
   },
   navBar: {
     home: "Inicio",
@@ -84,6 +88,10 @@ const SpanishDictionary = {
     email: "Correo electrónico",
     password: "Contraseña",
     updateButton: "Actualizar",
+    successfullMessageTitle: "Actualización exitosa",
+    successfullMessageBody: "Se ha actualizado su perfil correctamente",
+    errorMessageTitle: "Error al actualizar",
+    errorMessageBody: "Ha ocurrido un error al actualizar su perfil",
   },
   languagesModal:{
     title: "Selecciona un idioma",
@@ -137,6 +145,12 @@ const SpanishDictionary = {
     description: "Descripción",
     linkButton: "Ver servicio",
   },
+  offert:{
+    dateAndTime: "Fecha y hora",
+    description: "Descripción",
+    direction: "Dirección",
+    status: "Estado",
+  }
 
 
 
