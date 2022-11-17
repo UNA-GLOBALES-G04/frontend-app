@@ -39,7 +39,6 @@ const ServiceProfile = ({Service}) => {
   useEffect(() => {
 
     if(data?.data?.rating){
-      console.log('data?.data?.rating', data?.data?.rating)
       let rating = [];
     for (let i = 0; i < 5; i++) {
       if (i < data?.data?.rating) {

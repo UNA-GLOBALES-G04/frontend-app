@@ -61,6 +61,13 @@ const EnglishDictionary = {
     alreadyUser_2: "Login",
   },
   navBar: {
+    home: "Home",
+    profile: "Profile",
+    myProfile: "My Profile",
+    updateProfile: "Update Profile",
+    service: "Service",
+    allServices: "All services",
+    serviceRequest: "Service Request",
     loginButton: "Login",
     logoutButton: "Logout",
   },
@@ -90,8 +97,11 @@ const EnglishDictionary = {
   orderToast:{
     title: "Order",
     message: "Your order has been made",
+    errorMessage: "Error making your order",
   },
   createService:{
+    errorMessage: "Error creating service",
+    successfullMessage: "Service created successfully",
     title: "Create Service",
     serviceName: "Service Name",
     description: "Description",
@@ -99,6 +109,9 @@ const EnglishDictionary = {
     phoneNumber: "Phone Number",
     tags: "Tags",
     submitButton: "Create",
+  },
+  serviceCard:{
+    viewServiceButton: "View Service",
   }
   
 };
